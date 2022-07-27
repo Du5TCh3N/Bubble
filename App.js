@@ -1,7 +1,11 @@
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+// import { Searchbar } from 'react-native-paper';
 import { StyleSheet, Text, View, Button, TextInput, TabBarIOSItem} from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,10 +55,47 @@ function ProfileScreen() {
   );
 }
 
+const MyComponent = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const onChangeSearch = query => setSearchQuery(query);
+
+  return (
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
+  );
+};
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Event') {
+              iconName = focused
+                ? 'calendar'
+                : 'calendar-outline';
+            } else if (route.name === 'Nearby') {
+              iconName = focused ? 'people' : 'people-outline';
+            } else if (route.name === 'Chat') {
+              iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'person-circle' : 'person-circle-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
         <Tab.Screen name="Event" component={EventScreen} />
         <Tab.Screen name="Nearby" component={NearbyScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
