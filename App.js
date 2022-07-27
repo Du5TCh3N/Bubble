@@ -30,7 +30,7 @@ function EventScreen() {
 function NearbyScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
+      <Text>Nearby!</Text>
     </View>
   );
 }
@@ -55,8 +55,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={EventScreen} />
-        <Tab.Screen name="Settings" component={NearbyScreen} />
+        <Tab.Screen name="Event" component={EventScreen} />
+        <Tab.Screen name="Nearby" component={NearbyScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
