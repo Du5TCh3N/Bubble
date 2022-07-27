@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     borderRadius: 5,
     padding: 10,
-    height: 150,
+    height: 220, // Modify this to change height of card
   },
 
   itemName: {
