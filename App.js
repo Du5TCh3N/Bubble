@@ -14,20 +14,6 @@ function EventScreen() {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Event!</Text>
     </View>
-    // <View style={styles.container}>
-    //   <Text style={styles.red_box}>
-    //     Open up App.js to start working on your app!
-    //   </Text>
-    //   <Button title='Click Me'/>
-    //   <TextInput></TextInput>
-    //   <StatusBar style="auto" />
-    //   <View>
-    //     <Tab.Navigator>
-    //       <Tab.Screen name="Home" component={HomeScreen} />
-    //       <Tab.Screen name="Settings" component={SettingsScreen} />
-    //     </Tab.Navigator>
-    //   </View>
-    // </View>
   );
 }
 
