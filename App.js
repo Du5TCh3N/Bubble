@@ -53,12 +53,6 @@ function ProfileScreen() {
 
 export default function App() {
   return (
-<<<<<<< HEAD
-    <View style={styles.container}>
-      <Text>Developing Bubble Prototype</Text>
-      <StatusBar style="auto" />
-    </View>
-=======
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Event" component={EventScreen} />
@@ -67,7 +61,6 @@ export default function App() {
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
->>>>>>> 52dd72d166150af81840b0f4dc77daef8992025b
   );
 }
 
