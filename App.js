@@ -1,6 +1,8 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
@@ -12,7 +14,18 @@ import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 
 const Tab = createBottomTabNavigator();
 
-function EventScreen() {
+const EventScreens = {
+  EventHome: {
+    screen: EventDetail
+  }, 
+  EventDetail: {
+    screen: EventDefault
+  }
+}
+
+const EventStack = createStackNavigator(EventScreens);
+
+function EventDefault() {
   const [items, setItems] = React.useState([
     { name: 'TURQUOISE', code: '#1abc9c', description: 'Hello' },
     { name: 'EMERALD', code: '#2ecc71' },
@@ -57,12 +70,16 @@ function EventScreen() {
   );
 }
 
-function IndividualeventScreen(props) {
+function EventDetail() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Nearby!</Text>
     </View>
   );
+}
+
+function EventScreen() {
+  <EventStack />
 }
 
 function NearbyScreen() {
