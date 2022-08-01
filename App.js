@@ -5,12 +5,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
-import { StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
-// import Card from './components/Card.js';
-// import EventScreen from './screens/EventScreen.js';
+import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
+import SignInScreen from './src/screens/SignInScreen';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -101,7 +101,9 @@ function ChatScreen() {
 function ProfileScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile!</Text>
+      <SafeAreaView style={styles.root}>
+        <SignInScreen></SignInScreen>
+      </SafeAreaView>
     </View>
   );
 }
