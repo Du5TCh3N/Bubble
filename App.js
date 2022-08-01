@@ -100,7 +100,8 @@ function ChatScreen() {
 
 function ProfileScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    // old code: view style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+    <View> 
       <SafeAreaView style={styles.root}>
         <SignInScreen></SignInScreen>
       </SafeAreaView>
