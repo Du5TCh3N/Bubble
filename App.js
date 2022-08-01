@@ -9,8 +9,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
-import SignInScreen from './src/screens/SignInScreen';
-
+// import SignInScreen from './src/screens/SignInScreen';
+// import SignUpScreen from './src/screens/SignUpScreen';
+// import ConfirmScreen from './src/screens/ConfirmScreen';
+// import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import NewPasswordScreen from './src/screens/NewPasswordScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -101,11 +104,13 @@ function ChatScreen() {
 function ProfileScreen() {
   return (
     // old code: view style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-    <View> 
-      <SafeAreaView style={styles.root}>
-        <SignInScreen></SignInScreen>
-      </SafeAreaView>
-    </View>
+    <SafeAreaView style={styles.root}>
+      {/* <SignInScreen></SignInScreen> */}
+      {/* <SignUpScreen></SignUpScreen> */}
+      {/* <ConfirmScreen /> */}
+      {/* <ForgotPasswordScreen /> */}
+      <NewPasswordScreen />
+    </SafeAreaView>
   );
 }
 
