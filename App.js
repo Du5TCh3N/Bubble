@@ -2,17 +2,19 @@ import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-// import { Searchbar } from 'react-native-paper';
-import { StyleSheet, Text, View, Button, TextInput, TabBarIOSItem} from 'react-native';
+import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import { StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
+// import Card from './components/Card.js';
+// import EventScreen from './screens/EventScreen.js';
 
 const Tab = createBottomTabNavigator();
 
 function EventScreen() {
   const [items, setItems] = React.useState([
-    { name: 'TURQUOISE', code: '#1abc9c' },
+    { name: 'TURQUOISE', code: '#1abc9c', description: 'Hello' },
     { name: 'EMERALD', code: '#2ecc71' },
     { name: 'PETER RIVER', code: '#3498db' },
     { name: 'AMETHYST', code: '#9b59b6' },
@@ -35,24 +37,31 @@ function EventScreen() {
   ]);
 
   return (
-    // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    //   <Text>Event!</Text>
-    // </View>
     <FlatGrid
     itemDimension={150}
     data={items}
     style={styles.gridView}
-    // staticDimension={300}
-    // fixed
-    // horizontal
     spacing={10}
     renderItem={({ item }) => (
-      <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-        <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemCode}>{item.code}</Text>
-      </View>
+      <TouchableOpacity>
+        <Card>
+          <Card.Title title= {item.name} subtitle= {item.code}/>
+          <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+          <Card.Content>
+            <Paragraph>{item.description}</Paragraph>
+          </Card.Content>
+        </Card>
+      </TouchableOpacity>
     )}
   />
+  );
+}
+
+function IndividualeventScreen(props) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Nearby!</Text>
+    </View>
   );
 }
 
