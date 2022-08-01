@@ -174,21 +174,21 @@ const styles = StyleSheet.create({
   }, 
 
   gridView: {
-    marginTop: 10,
+    marginTop: 0,
     flex: 1,
   },
 
   itemContainer: {
     justifyContent: 'flex-end',
-    borderRadius: 5,
-    padding: 10,
+    borderRadius: 0,
+    padding: 0,
     height: 220, // Modify this to change height of card
   },
 
   itemName: {
     fontSize: 16,
     color: '#fff',
-    fontWeight: '600',
+    fontWeight: '1200',
   },
 
   itemCode: {
