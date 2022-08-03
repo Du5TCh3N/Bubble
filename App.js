@@ -9,7 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
-import SignInScreen from './src/screens/SignInScreen';
+import ProfileHomeScreen from './src/screens/ProfileHomeScreen';
 import EventScreen from './src/screens/EventScreen';
 import GroupScreen from './src/screens/GroupScreen';
 import ChatApp from './src/ChatApp';
@@ -36,12 +36,7 @@ function ChatScreen() {
 
 function ProfileScreen() {
   return (
-    // old code: view style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-    <View> 
-      <SafeAreaView style={styles.root}>
-        <SignInScreen></SignInScreen>
-      </SafeAreaView>
-    </View>
+    <ProfileHomeScreen />
   );
 }
 

@@ -3,6 +3,8 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ScrollView} from 're
 import Logo from '../../../assets/imgOne.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
+import SocialButtons from '../../components/SocialButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
@@ -10,16 +12,20 @@ const SignInScreen = () => {
 
     const {height} = useWindowDimensions();
 
+    const navigation = useNavigation();
+
     const onSignInPressed = () => {
         console.warn("Sign In");
     }
 
     const onForgotPasswordPressed = () => {
         console.warn('Forgot password pressed')
+        navigation.navigate('ForgotPassword')
     }
 
     const onNoAccount = () => {
         console.warn('User needs to create an account')
+        navigation.navigate('SignUp');
     }
 
     return (
@@ -52,9 +58,10 @@ const SignInScreen = () => {
                 onPress={onForgotPasswordPressed} 
                 type='TERTIARY' 
             />
+            <SocialButtons />
             <CustomButton
                 text="Don't have an account?"
-                onPress={onSignInPressed}
+                onPress={onNoAccount}
                 type='TERTIARY'
             />
 
