@@ -4,12 +4,15 @@ import Logo from '../../../assets/imgOne.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialButtons from '../../components/SocialButtons';
+import { useNavigation } from '@react-navigation/native';
 
-function SignInScreen() {
+const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const {height} = useWindowDimensions();
+
+    const navigation = useNavigation();
 
     const onSignInPressed = () => {
         console.warn("Sign In");
@@ -17,10 +20,12 @@ function SignInScreen() {
 
     const onForgotPasswordPressed = () => {
         console.warn('Forgot password pressed')
+        navigation.navigate('ForgotPassword')
     }
 
     const onNoAccount = () => {
         console.warn('User needs to create an account')
+        navigation.navigate('SignUp');
     }
 
     return (

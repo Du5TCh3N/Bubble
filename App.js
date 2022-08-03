@@ -8,13 +8,11 @@ import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
-import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
 import ProfileHomeScreen from './src/screens/ProfileHomeScreen';
-// import Navigation from './src/navigation';
-//For mac development with linking screens , make sure to run npx pod-install ios
+
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 // const EventScreens = {
 //   EventHome: {
 //     screen: EventDetail
@@ -101,9 +99,7 @@ function ChatScreen() {
 
 function ProfileScreen() {
   return (
-    <SafeAreaView style={styles.root}>
-      <ProfileHomeScreen />
-    </SafeAreaView>
+    <ProfileHomeScreen />
   );
 }
 

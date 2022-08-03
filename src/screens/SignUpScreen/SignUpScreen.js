@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, useWindowDimensions, ScrollView} from 'react-nat
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialButtons from '../../components/SocialButtons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const SignUpScreen = () => {
     const [username, setUsername] = useState('');
@@ -12,12 +14,15 @@ const SignUpScreen = () => {
 
     const {height} = useWindowDimensions();
 
+    const navigation = useNavigation();
+
     const onRegisterPressed = () => {
         console.warn("Registered");
     }
 
     const onForgotPasswordPressed = () => {
         console.warn('Forgot password pressed')
+        navigation.navigate("ForgotPassword")
     }
 
     const onTermsOfUsePressed = () => {
@@ -26,6 +31,11 @@ const SignUpScreen = () => {
     const onPrivacyPressed = () => {
         console.warn('Privacy policies Link')
     }
+    const returnSignIn = () => {    
+        console.warn('return to sign in page')
+        navigation.navigate("SignIn")
+    }
+
     return (
         <ScrollView>
 
@@ -71,7 +81,12 @@ const SignUpScreen = () => {
                 onPress={onForgotPasswordPressed} 
                 type='TERTIARY' 
             />
-
+            
+            <CustomButton 
+                text="Return to Sign In" 
+                onPress={returnSignIn} 
+                type='TERTIARY' 
+            />
         </View>
         </ScrollView>
     );
