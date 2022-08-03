@@ -9,9 +9,9 @@ import { Avatar, Card, Title, Paragraph, IconButton } from 'react-native-paper';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
 
-const EventStack = createStackNavigator();
+const GroupStack = createStackNavigator();
 
-function EventHome({ navigation }) {
+function GroupHome({ navigation }) {
     const [items, setItems] = React.useState([
         { name: 'TURQUOISE', code: '#1abc9c', description: 'Hello', key: '1', img: 'https://picsum.photos/700' },
         { name: 'EMERALD', code: '#2ecc71', key: '2', img: 'https://picsum.photos/700' },
@@ -57,7 +57,7 @@ function EventHome({ navigation }) {
       );
 }   
 
-function EventDetail({ route, navigation }) {
+function GroupDetail({ route, navigation }) {
     const { item } = route.params;
 
     return (
@@ -85,12 +85,12 @@ function EventDetail({ route, navigation }) {
   );
 }
 
-function EventScreen() {
+function GroupScreen() {
   return (
-    <EventStack.Navigator>
-        <EventStack.Screen name="Home" component={EventHome}/>
-        <EventStack.Screen name="Detail" component={EventDetail}/>
-    </EventStack.Navigator>
+    <GroupStack.Navigator>
+        <GroupStack.Screen name="Home" component={GroupHome}/>
+        <GroupStack.Screen name="Detail" component={GroupDetail}/>
+    </GroupStack.Navigator>
   )
 }
 
@@ -133,4 +133,4 @@ const styles = StyleSheet.create({
     },
   });
 
-  export default EventScreen
+  export default GroupScreen

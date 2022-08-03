@@ -11,6 +11,7 @@ import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
 import SignInScreen from './src/screens/SignInScreen';
 import EventScreen from './src/screens/EventScreen';
+import GroupScreen from './src/screens/GroupScreen';
 import ChatApp from './src/ChatApp';
 
 const Tab = createBottomTabNavigator();
@@ -22,11 +23,9 @@ function EventsScreen() {
   );
 }
 
-function NearbyScreen() {
+function GroupsScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Nearby!</Text>
-    </View>
+    <GroupScreen></GroupScreen>
   );
 }
 
@@ -72,7 +71,7 @@ export default function App() {
               iconName = focused
                 ? 'calendar'
                 : 'calendar-outline';
-            } else if (route.name === 'Nearby') {
+            } else if (route.name === 'Group') {
               iconName = focused ? 'people' : 'people-outline';
             } else if (route.name === 'Chat') {
               iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
@@ -88,7 +87,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Events" component={EventsScreen} />
-        <Tab.Screen name="Nearby" component={NearbyScreen} />
+        <Tab.Screen name="Group" component={GroupScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
