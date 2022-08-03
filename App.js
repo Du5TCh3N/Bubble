@@ -1,7 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, TextInput, TabBarIOSItem} from 'react-native';
+// import { Searchbar } from 'react-native-paper';
+import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem} from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+// import SignInScreen from './src/screens/SignInScreen';
+import ChatApp from './src/ChatApp';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,12 +41,9 @@ function NearbyScreen() {
 }
 
 function ChatScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Chat!</Text>
-    </View>
-  );
+  return <ChatApp />;
 }
+
 
 function ProfileScreen() {
   return (
@@ -76,5 +78,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#ff0000',
     padding: 16
-  }
+  },
 });
