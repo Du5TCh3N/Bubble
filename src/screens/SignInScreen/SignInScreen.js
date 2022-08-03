@@ -5,7 +5,7 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialButtons from '../../components/SocialButtons';
 
-const SignInScreen = () => {
+function SignInScreen() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
