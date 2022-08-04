@@ -16,15 +16,16 @@ const SignInScreen = () => {
 
     const onSignInPressed = () => {
         console.warn("Sign In");
+        navigation.navigate('Profile');
     }
 
     const onForgotPasswordPressed = () => {
-        console.warn('Forgot password pressed')
-        navigation.navigate('ForgotPassword')
+        console.warn('Forgot password pressed');
+        navigation.navigate('ForgotPassword');
     }
 
     const onNoAccount = () => {
-        console.warn('User needs to create an account')
+        console.warn('User needs to create an account');
         navigation.navigate('SignUp');
     }
 

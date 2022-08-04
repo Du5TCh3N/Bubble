@@ -5,7 +5,9 @@ import SignUpScreen from '../SignUpScreen';
 import ConfirmScreen from '../ConfirmScreen';
 import ForgotPasswordScreen from '../ForgotPasswordScreen';
 import NewPasswordScreen from '../NewPasswordScreen';
+import EventScreen from '../EventScreen/EventScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import ProfileScreen from '../ProfileScreen';
 
 const profileStack = createStackNavigator();
 
@@ -17,6 +19,9 @@ const ProfileHomeScreen = () => {
         <profileStack.Screen name="Confirm" component={ConfirmScreen} />
         <profileStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <profileStack.Screen name="NewPassword" component={NewPasswordScreen} />
+        <profileStack.Screen name="Profile" component={ProfileScreen} />
+        <profileStack.Screen name="Home" component={EventScreen} />
+
     </profileStack.Navigator>
   )
 }

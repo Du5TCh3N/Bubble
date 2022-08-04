@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
   container_TERTIARY: {
 
   },
+  container_MINOR: {
+    padding: 0,
+    marginVertical: 0,
+    width: "25%",
+    alignItems: 'center',
+  },
   text: {
     fontWeight: 'bold',
     color: 'white',
@@ -48,6 +54,9 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   text_TERTIARY: {
+    color: 'grey'
+  },
+  text_MINOR: {
     color: 'grey'
   }
   
