@@ -70,7 +70,7 @@ export default function App() {
               iconName = focused ? 'people' : 'people-outline';
             } else if (route.name === 'Chat') {
               iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
-            } else if (route.name === 'Profile') {
+            } else if (route.name === 'My Space') {
               iconName = focused ? 'person-circle' : 'person-circle-outline';
             }
 
@@ -84,7 +84,7 @@ export default function App() {
         <Tab.Screen name="Events" component={EventsScreen} />
         <Tab.Screen name="Group" component={GroupScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen name="My Space" component={ProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
