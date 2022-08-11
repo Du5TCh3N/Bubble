@@ -13,6 +13,7 @@ import ProfileHomeScreen from './src/screens/ProfileHomeScreen';
 import EventScreen from './src/screens/EventScreen';
 import GroupScreen from './src/screens/GroupScreen';
 import ChatApp from './src/ChatApp';
+import CalendarScreen from './src/screens/CalendarScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -72,6 +73,8 @@ export default function App() {
               iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
             } else if (route.name === 'My Space') {
               iconName = focused ? 'person-circle' : 'person-circle-outline';
+            } else if (route.name === "Calendar") {
+              iconName = focused ? 'calendar' : 'calendar-outline';
             }
 
             // You can return any component that you like here!
@@ -83,6 +86,7 @@ export default function App() {
       >
         <Tab.Screen name="Events" component={EventsScreen} />
         <Tab.Screen name="Group" component={GroupScreen} />
+        <Tab.Screen name="Calender" component={CalendarScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
         <Tab.Screen name="My Space" component={ProfileScreen} />
       </Tab.Navigator>

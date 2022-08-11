@@ -7,16 +7,16 @@ const SocialButtons = () => {
     const onSignInGoogle = () => {
         console.warn('Sign in through Google');
     }
-    const onSignInFacebook = () => {
+    const onSignInWechat = () => {
         console.warn('Sign in through Facebook');
     }
     return (
         <>
         <CustomButton
-            text="Sign In with Facebook"
-            onPress={onSignInFacebook}
-            bgColor="#E7EAF4"
-            fgColor="#4765A9"
+            text="Sign In with WeChat"
+            onPress={onSignInWechat}
+            bgColor="#5CC928"
+            fgColor="#FCFDFD"
         />
         <CustomButton
             text="Sign In with Google"
