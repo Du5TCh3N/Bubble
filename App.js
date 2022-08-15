@@ -65,28 +65,30 @@ export default function App() {
 
             if (route.name === 'Events') {
               iconName = focused
-                ? 'calendar'
-                : 'calendar-outline';
+                ? 'walk'
+                : 'walk-outline'
             } else if (route.name === 'Group') {
               iconName = focused ? 'people' : 'people-outline';
             } else if (route.name === 'Chat') {
               iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
             } else if (route.name === 'My Space') {
               iconName = focused ? 'person-circle' : 'person-circle-outline';
-            } else if (route.name === "Calendar") {
-              iconName = focused ? 'calendar' : 'calendar-outline';
-            }
+            } else if (route.name === "Schedule") {
+              iconName = focused 
+                ? 'time' 
+                : 'time-outline';
+            } 
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: 'blue',
           tabBarInactiveTintColor: 'gray',
         })}
       >
         <Tab.Screen name="Events" component={EventsScreen} />
         <Tab.Screen name="Group" component={GroupScreen} />
-        <Tab.Screen name="Calender" component={CalendarScreen} />
+        <Tab.Screen name="Schedule" component={CalendarScreen} />
         <Tab.Screen name="Chat" component={ChatScreen} />
         <Tab.Screen name="My Space" component={ProfileScreen} />
       </Tab.Navigator>
