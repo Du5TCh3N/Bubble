@@ -22,60 +22,61 @@ const ProfileScreen = () => {
 
 
     return (
-        <View styles={styles.containerImage}>
-            <Image 
-                style={styles.bgImage}
-                source={Backg}
-            />
-            <AntDesign
-                style={{color:'black', position:'absolute',top:15, right:20}}
-                name="ellipsis1" 
-                size= {25}
-                onPress={editProfile}
-            />
-            <View style={styles.bottomContainer}>
+            <View styles={styles.containerImage}>
                 <Image 
-                    style={styles.profile}
-                    source={profilePic}
+                    style={styles.bgImage}
+                    source={Backg}
                 />
-                <Text style={styles.name}> UwU Charles </Text>
-                <Text style={{color: 'grey', bottom: '7%'}}>London, United Kingdom{"\n"}Imperial College London</Text>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '75%'}}>
-                    <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}> Events </Text>
-                    <CustomButton 
-                        text="See All" 
-                        type='MINOR' 
-                        onPress={onPressSeeAll}
-                    />
-                </View>
-                <ScrollView style={{flexDirection: "row", height: 200, width: '100%', paddingLeft: 50.0, paddingTop: 12.0}} horizontal >
+                <AntDesign
+                    style={{color:'black', position:'absolute',top:15, right:20}}
+                    name="ellipsis1" 
+                    size= {25}
+                    onPress={editProfile}
+                />
+                <View style={styles.bottomContainer}>
                     <Image 
-                        style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
-                        source={{ uri: 'https://picsum.photos/700' }}
+                        style={styles.profile}
+                        source={profilePic}
                     />
-                     <Image 
-                        style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
-                        source={{ uri: 'https://picsum.photos/700' }}
-                    />
-                     <Image 
-                        style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
-                        source={{ uri: 'https://picsum.photos/700' }}
-                    />
-                     <Image 
-                        style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
-                        source={{ uri: 'https://picsum.photos/700' }}
-                    />
-                     <Image 
-                        style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
-                        source={{ uri: 'https://picsum.photos/700' }}
-                    />
-                     <Image 
-                        style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
-                        source={{ uri: 'https://picsum.photos/700' }}
-                    />
-                </ScrollView>
-            </View>
-        </View>
+                    <Text style={styles.name}> UwU Charles </Text>
+                    <Text style={{color: 'grey', bottom: '7%'}}>London, United Kingdom{"\n"}Imperial College London</Text>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '75%'}}>
+                        <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}> Events </Text>
+                        <CustomButton 
+                            text="See All" 
+                            type='MINOR' 
+                            onPress={onPressSeeAll}
+                        />
+                    </View>
+                        <ScrollView style={{flexDirection: "row", height: 200, width: '100%', paddingLeft: 50.0, paddingTop: 12.0}} horizontal >
+                            <Image 
+                                style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
+                                source={{ uri: 'https://picsum.photos/700' }}
+                            />
+                            <Image 
+                                style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
+                                source={{ uri: 'https://picsum.photos/700' }}
+                            />
+                            <Image 
+                                style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
+                                source={{ uri: 'https://picsum.photos/700' }}
+                            />
+                            <Image 
+                                style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
+                                source={{ uri: 'https://picsum.photos/700' }}
+                            />
+                            <Image 
+                                style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
+                                source={{ uri: 'https://picsum.photos/700' }}
+                            />
+                            <Image 
+                                style={{height: 200, width: 150, borderRadius: 15, marginLeft: 8}} 
+                                source={{ uri: 'https://picsum.photos/700' }}
+                            />
+                        </ScrollView>
+                    </View>
+                </View>
+       
     )
 }
 
@@ -93,16 +94,14 @@ const styles = StyleSheet.create({
     bottomContainer: {
         marginTop:"52%",
         height:"90%", 
-        width: 400, 
+        width: "100%", 
         backgroundColor: 'white', 
-        borderTopStartRadius: 50, 
-        borderTopEndRadius: 50,
         alignItems: 'center',
     },
     profile:{
-        height: 120,
-        width: 120,
-        borderRadius: 25,
+        height: "15%",
+        width: "30%",
+        // borderRadius: 25,
         bottom: '10%'
     },
     name:{
