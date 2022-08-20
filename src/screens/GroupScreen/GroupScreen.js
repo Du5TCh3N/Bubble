@@ -157,6 +157,7 @@ function GroupDetail({ route, navigation }) {
                   </Text>
                 </View>
               </View>
+              <View style={{backgroundColor: '#F7F7F7',padding:6, marginBottom:10}}></View> 
               <View style = {styles.buttonView}>
                 <CustomButton 
                   text="Join"
