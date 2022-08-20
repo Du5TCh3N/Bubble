@@ -178,7 +178,7 @@ function GroupDetail({ route, navigation }) {
 function GroupScreen() {
   return (
     <GroupStack.Navigator>
-        <GroupStack.Screen name="Home" component={GroupHome}/>
+        <GroupStack.Screen name="Groups" component={GroupHome}/>
         <GroupStack.Screen name="Detail" component={GroupDetail}/>
     </GroupStack.Navigator>
   )
