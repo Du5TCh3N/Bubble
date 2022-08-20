@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginRight: 10,
-    borderRadius:'25px',
+    borderRadius: 25,
   },
   row: {
     flexDirection: 'row',
@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     width: 300,
     borderbottomwidth: '1px',
     borderbottomcolor: '#cccccc',
+    fontFamily: "Cochin",
+    fontWeight: 'bold',
   },
 
   UserInfoText: {
