@@ -59,9 +59,7 @@ export default function App() {
             let iconName;
 
             if (route.name === 'Bubble') {
-              iconName = focused
-                ? 'chatbubbles'
-                : 'chatbubbles-outline'
+              iconName = focused ? 'chatbubbles' : 'chatbubbles-outline'
             } else if (route.name === 'Map') {
               iconName = focused ? 'map' : 'map-outline';
             } else if (route.name === 'Add') {
