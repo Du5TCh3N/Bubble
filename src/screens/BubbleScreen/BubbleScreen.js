@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
+import CustomDialogBox from '../../components/CustomDialogBox';
 
 function BubbleScreen() {
   return (
@@ -11,7 +12,9 @@ function BubbleScreen() {
       }}
     >
       <Text>Bubble Screen</Text>
+      <CustomDialogBox></CustomDialogBox>
     </View>
+    
   );
 };
 
