@@ -11,11 +11,13 @@ import SearchBar from "../../components/SearchBar";
 
 const bubbleList = [
   {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '2', name: 'Come Drink1', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '3', name: 'Come Drink2', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '4', name: 'Come Drink3', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '5', name: 'Come Drink4', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '6', name: 'Come Drink5', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '5', name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '7', name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum"},
 ]
 
 function BubbleScreen() {
