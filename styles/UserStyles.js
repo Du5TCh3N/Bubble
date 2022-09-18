@@ -3,11 +3,9 @@ import styled from 'styled-components';
 export const TextSection = styled.View`
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
   padding-left: 0;
   margin-left: 10px;
   width: 300px;
-  border-bottom-width: 1px;
   border-bottom-color: #cccccc;
 `;
 
