@@ -2296,6 +2296,11 @@
   resolved "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
+"@types/geojson@^7946.0.7":
+  "integrity" "sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA=="
+  "resolved" "https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.10.tgz"
+  "version" "7946.0.10"
+
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
   resolved "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.5.tgz"
@@ -6413,10 +6418,30 @@ react-native-pager-view@5.4.15:
   resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz"
   integrity sha512-5NssD840wFCuOL4B1ZRiRADvt+Vx2Dgify4SmAUqHXCx03yiGPnRWmFjYXyQeK6gq/8VY+gPGE4bTy9ahzBbDw==
 
+<<<<<<< HEAD
 react-native-paper@^4.12.4:
   version "4.12.4"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.12.4.tgz#c04ce40d225dc267b7ee32be705dd553f44e0c0c"
   integrity sha512-NMfLSIN0Ql/KCTSimhgzbEOgz371dqDAgChnp2VE4H7n1B0Pwy0bzPKmY/T8trVvEdmJRXrbXAusaFq8elDXNg==
+=======
+"react-native-maps@0.30.2":
+  "integrity" "sha512-WVv5e7aWdnNJugqNSG/87U+12Pg4RFWU7x/UigTPG1FEUZx2TbYKChL6xZCMGPOv5m5b4Z7bMeKJnZosg+yPyQ=="
+  "resolved" "https://registry.npmjs.org/react-native-maps/-/react-native-maps-0.30.2.tgz"
+  "version" "0.30.2"
+  dependencies:
+    "@types/geojson" "^7946.0.7"
+    "deprecated-react-native-prop-types" "^2.3.0"
+
+"react-native-pager-view@*", "react-native-pager-view@>= 4.0.0", "react-native-pager-view@5.4.15":
+  "integrity" "sha512-5NssD840wFCuOL4B1ZRiRADvt+Vx2Dgify4SmAUqHXCx03yiGPnRWmFjYXyQeK6gq/8VY+gPGE4bTy9ahzBbDw=="
+  "resolved" "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz"
+  "version" "5.4.15"
+
+"react-native-paper@^4.12.4":
+  "integrity" "sha512-NMfLSIN0Ql/KCTSimhgzbEOgz371dqDAgChnp2VE4H7n1B0Pwy0bzPKmY/T8trVvEdmJRXrbXAusaFq8elDXNg=="
+  "resolved" "https://registry.npmjs.org/react-native-paper/-/react-native-paper-4.12.4.tgz"
+  "version" "4.12.4"
+>>>>>>> 759ac681 (Init MapView)
   dependencies:
     "@callstack/react-theme-provider" "^3.0.7"
     color "^3.1.2"
@@ -6461,6 +6486,7 @@ react-native-super-grid@^4.4.2:
   dependencies:
     prop-types "^15.6.0"
 
+<<<<<<< HEAD
 react-native-swipe-gestures@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz"
@@ -6480,10 +6506,17 @@ react-native-vector-icons@^9.2.0:
   version "9.2.0"
   resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-9.2.0.tgz"
   integrity sha512-wKYLaFuQST/chH3AJRjmOLoLy3JEs1JR6zMNgTaemFpNoXs0ztRnTxcxFD9xhX7cJe1/zoN5BpQYe7kL0m5yyA==
+=======
+"react-native-web@>= 0.11", "react-native-web@0.17.7":
+  "integrity" "sha512-4OOU/QjyRySOXyHfTvljEMS4VXKn42Qs3y9uHDPMwaCUFjwg0oasR/j706OaVgan9kF4Ipa2vJ3F6Z/Xqy8KeQ=="
+  "resolved" "https://registry.npmjs.org/react-native-web/-/react-native-web-0.17.7.tgz"
+  "version" "0.17.7"
+>>>>>>> 759ac681 (Init MapView)
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
+<<<<<<< HEAD
 react-native-web@0.17.7:
   version "0.17.7"
   resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.17.7.tgz"
@@ -6501,6 +6534,12 @@ react-native@0.68.2:
   version "0.68.2"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.68.2.tgz"
   integrity sha512-qNMz+mdIirCEmlrhapAtAG+SWVx6MAiSfCbFNhfHqiqu1xw1OKXdzIrjaBEPihRC2pcORCoCHduHGQe/Pz9Yuw==
+=======
+"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.69 || 1000.0.0", "react-native@>= 0.51", "react-native@>=0.42.0", "react-native@>=0.59.0", "react-native@>=0.61.0", "react-native@0.68.2":
+  "integrity" "sha512-qNMz+mdIirCEmlrhapAtAG+SWVx6MAiSfCbFNhfHqiqu1xw1OKXdzIrjaBEPihRC2pcORCoCHduHGQe/Pz9Yuw=="
+  "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.68.2.tgz"
+  "version" "0.68.2"
+>>>>>>> 759ac681 (Init MapView)
   dependencies:
     "@jest/create-cache-key-function" "^27.0.1"
     "@react-native-community/cli" "^7.0.3"
@@ -6548,10 +6587,10 @@ react-shallow-renderer@16.14.1:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0"
 
-react@17.0.2:
-  version "17.0.2"
-  resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
-  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
+"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@>= 16.0 || < 18.0", "react@>= 16.8.0", "react@>=16.3.0", "react@>=16.8.0", "react@>=17.0.0", "react@>=17.0.1", "react@17.0.2":
+  "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
+  "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
+  "version" "17.0.2"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
