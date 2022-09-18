@@ -1,3 +1,2 @@
-package.json
-package-info.json
-settings.json
+node_modules
+.expo
