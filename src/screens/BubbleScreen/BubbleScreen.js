@@ -2,11 +2,13 @@ import React from "react";
 import { View, Text, FlatList, ScrollView, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { Card, Title, Paragraph} from 'react-native-paper';
 import { FlatGrid } from 'react-native-super-grid';
+import { createStackNavigator } from "@react-navigation/stack";
 
 /**
  * Import components
  */
 import ContentGrid from "../../components/ContentGrid";
+import ContentPage from "../../components/ContentPage";
 import SearchBar from "../../components/SearchBar";
 
 const bubbleList = [
@@ -20,13 +22,33 @@ const bubbleList = [
   {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum"},
 ]
 
+const BubbleStack = createStackNavigator();
+
 function BubbleScreen() {
 
   return (
-      <ContentGrid></ContentGrid>
+      <BubbleStack.Navigator>
+        {/* <BubbleStack.Screen name="Home" component={ContentGrid}/> */}
+        {/* <BubbleStack.Screen name="Home" component={ContentPage}/> */}
+        <BubbleStack.Screen name="Home" component={BubbleHomeScreen}/>
+        {/* <BubbleStack.Screen name="Home" component={BubbleDetailScreen}/> */}
+        <BubbleStack.Screen name="Detail" component={BubbleDetailScreen}/>
+      </BubbleStack.Navigator>
       
   );
 };
+
+function BubbleHomeScreen() {
+  return (
+    <ContentGrid onClickFunction={() => this.props.navigation.navigate('Detail')}></ContentGrid>
+  )
+}
+
+function BubbleDetailScreen() {
+  return (
+    <ContentPage></ContentPage>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

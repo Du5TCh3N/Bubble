@@ -14,7 +14,7 @@ const bubbleList = [
     {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum"},
 ]
 
-function ContentGrid() {
+function ContentGrid(onClickFunction) {
 
     const getHeader = () => {
         return (
@@ -32,7 +32,7 @@ function ContentGrid() {
                 style={styles.gridView}
                 spacing={2}
                 renderItem={({ item }) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => onClickFunction}>
                         <Card>
                             <Card.Cover source={{ uri: item.img }} />
                             <Card.Title title= {item.name} subtitle= {item.code}/>
