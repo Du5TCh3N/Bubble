@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { FlatGrid } from 'react-native-super-grid';
@@ -25,6 +25,7 @@ function BubbleScreen() {
     <BubbleStack.Navigator>
       <BubbleStack.Screen name="Home" component={BubbleHomeScreen}/>
       <BubbleStack.Screen name="Detail" component={BubbleDetailScreen}/>
+      <BubbleStack.Screen name="Image" component={BubbleImageScreen}/>
     </BubbleStack.Navigator>
   );
 };
@@ -68,7 +69,7 @@ function BubbleDetailScreen({ route, navigation }) {
       <ScrollView>
           <Card>
               <Card.Title title={item.name} />
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Image', { item })}>
                   <Card.Cover source = {{ uri: item.img }}/>
               </TouchableOpacity>
               <Card.Actions alignItems="flex-end">
@@ -88,6 +89,27 @@ function BubbleDetailScreen({ route, navigation }) {
             </Card.Content>
           </Card>
       </ScrollView>
+  )
+}
+
+function BubbleImageScreen({ route, navigation }) {
+  const { item } = route.params;
+  console.log(item)
+  const {uri} = item.img;
+  console.log(uri)
+
+  return (
+    <View>
+      {/* <Image
+        source={{uri: item.img }}
+      /> */}
+      <Image
+        // style={{width: '100%', height: '100%'}}
+        // source={{uri:'https://engineering.fb.com/wp-content/uploads/2016/04/yearinreview.jpg'}}
+        source={{uri: item.img}}
+      />
+      <Text>Image</Text>
+    </View>
   )
 }
 
