@@ -79,7 +79,7 @@ export default function App() {
           },
           tabBarActiveTintColor: 'blue',
           tabBarInactiveTintColor: 'gray',
-          headerShown: true
+          headerShown: false
         })}
       >
         <Tab.Screen name="Bubble" component={Bubbles} />
