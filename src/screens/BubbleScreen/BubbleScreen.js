@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Image } from "react-native";
+import React, {useState} from "react";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Image, Button, Alert,} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { FlatGrid } from 'react-native-super-grid';
@@ -8,14 +8,14 @@ import { Card, Title, Paragraph, IconButton} from 'react-native-paper';
 import SearchBar from "../../components/SearchBar";
 
 const dummyBubbles = [
-  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '5', name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '7', name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum"},
-  {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-02"},
+  {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-01"},
+  {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-09-30"},
+  {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-09-30"},
+  {key: '5', name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-29"},
+  {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-28"},
+  {key: '7', name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-27"},
+  {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-27"},
 ]
 
 const BubbleStack = createStackNavigator();
@@ -36,6 +36,17 @@ function BubbleHomeScreen({ navigation }) {
     return (
       <View>
         <SearchBar></SearchBar>
+        <View style={{backgroundColor: 'white',padding:6, marginBottom:10, justifyContent : 'row',flexDirection: "row"}}>
+        <TouchableOpacity style={styles.button} onPress = {() => Alert.alert('综合推荐的的bubble')}>
+            <Text>综合</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress = {() => Alert.alert('最热门的bubble')}>
+            <Text>热门</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress = {() => Alert.alert('最新的bubble')}>
+            <Text>最新</Text>
+        </TouchableOpacity>
+        </View> 
       </View>
     )
   }
@@ -53,6 +64,8 @@ function BubbleHomeScreen({ navigation }) {
                     <Card.Title title= {item.name} subtitle= {item.code}/>
                     <Card.Content>
                         <Paragraph>{item.description}</Paragraph>
+                        <Paragraph style = {styles.tagItems}>{item.tag1}</Paragraph>
+                        <Text>{item.space}</Text>
                     </Card.Content>
                 </Card>
             </TouchableOpacity>
@@ -125,6 +138,30 @@ const styles = StyleSheet.create({
   redBorder: {
       borderColor: "red",
       borderWidth: 4,
+  },
+
+  tagItems: {
+    backgroundColor: '#F0EDED',
+    color: '#949292',
+    fontSize: 12,
+    display: 'inline-block',
+    paddingHorizontal: 7,
+    paddingVertical: 1,
+    borderRadius: 11,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+    flexDirection: 'row',
+  },
+  button : {
+    backgroundColor: '#F0EDED',
+    color: '#949292',
+    paddingHorizontal: 14,
+    paddingVertical: 2,
+    borderRadius: 11,
+    alignSelf: 'flex-start',
+    overflow: 'hidden',
+    flexDirection: 'row',
+
   }
 });
 
