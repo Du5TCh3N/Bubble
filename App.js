@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import { Avatar, Card, Title, Paragraph, MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 import { SafeAreaView, StyleSheet, Text, View, Button, TextInput, TabBarIOSItem, TouchableOpacity} from 'react-native';
 // import ProfileHomeScreen from './src/screens/ProfileHomeScreen';
@@ -50,7 +50,7 @@ function Profile() {
   );
 }
 
-export default function App() {
+function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -130,3 +130,23 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 12,
+  version: 3,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db',
+    secondary: '#f1c40f',
+    tertiary: '#a1b2c3'
+  },
+};
+
+export default function Main() {
+  return (
+    <PaperProvider theme={theme}>
+      <App />
+    </PaperProvider>
+  );
+}

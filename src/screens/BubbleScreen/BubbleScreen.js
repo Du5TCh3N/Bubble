@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Ima
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { FlatGrid } from 'react-native-super-grid';
-import { Card, Title, Paragraph, IconButton} from 'react-native-paper';
+import { Card, Title, Paragraph, IconButton, Badge, TextInput} from 'react-native-paper';
+import BlankSpacer from "react-native-blank-spacer";
 
 import SearchBar from "../../components/SearchBar";
 
 const dummyBubbles = [
-  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum"},
+  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", member_id: ["1", "2"], num_Members: "2", owner_id: "0", owner_name: "Charles Yu", owner_location: "London"},
   {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum"},
   {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum"},
   {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum"},
@@ -18,7 +19,15 @@ const dummyBubbles = [
   {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum"},
 ]
 
+const dummyUsers = [
+  {id: "0", name: "Charles Yu", img: "https://picsum.photos/700", liked: ["1"], starred: []}
+]
+
 const BubbleStack = createStackNavigator();
+
+function getUserName(id) {
+  dummyUsers[id].name
+}
 
 function BubbleScreen() {
   return (
@@ -26,6 +35,7 @@ function BubbleScreen() {
       <BubbleStack.Screen name="Home" component={BubbleHomeScreen}/>
       <BubbleStack.Screen name="Detail" component={BubbleDetailScreen}/>
       <BubbleStack.Screen name="Image" component={BubbleImageScreen}/>
+      <BubbleStack.Screen name="Users" component={BubbleUsersScreen}/>
     </BubbleStack.Navigator>
   );
 };
@@ -52,7 +62,7 @@ function BubbleHomeScreen({ navigation }) {
                     <Card.Cover source={{ uri: item.img }} />
                     <Card.Title title= {item.name} subtitle= {item.code}/>
                     <Card.Content>
-                        <Paragraph>{item.description}</Paragraph>
+                        <Paragraph>{ item.owner_name }</Paragraph>
                     </Card.Content>
                 </Card>
             </TouchableOpacity>
@@ -65,15 +75,31 @@ function BubbleHomeScreen({ navigation }) {
 function BubbleDetailScreen({ route, navigation }) {
   const { item } = route.params;
 
+  const [text, setText] = React.useState("");
+
+  // getUserName()
+
   return (
       <ScrollView>
+          <BlankSpacer height={2}/>
           <Card>
-              <Card.Title title={item.name} />
+              <TouchableOpacity onPress={() => navigation.navigate("Users", {item})}>
+                <Card.Title 
+                  title={item.owner_name} 
+                  subtitle={item.owner_location}
+                  titleVariant="titleMedium"
+                  subtitleVariant="bodySmall"
+                  right={(props) => <View><Text>Number of Users</Text><Badge>{item.num_Members}</Badge>
+                    </View>}
+                />
+              </TouchableOpacity>
+                
               <TouchableOpacity onPress={() => navigation.navigate('Image', { item })}>
                   <Card.Cover source = {{ uri: item.img }}/>
               </TouchableOpacity>
+              <Card.Title title={item.name} titleVariant="headlineLarge"/>
               <Card.Actions alignItems="flex-end">
-                  <IconButton icon= "thumb-up-outline" onPress={() => console.log('Liked')}/>
+                  <IconButton icon= "thumb-up-outline" onPress={() => console.log('Liked')} mode="contained"/>
                   <IconButton icon= "share-outline" onPress={() => console.log('Shared')}/>
                   <IconButton icon= "chat-outline" onPress={() => console.log('Chat')}/>
                   <IconButton icon= "plus" onPress={() => console.log('Saved')}/>
@@ -81,12 +107,15 @@ function BubbleDetailScreen({ route, navigation }) {
             <Card.Content>
               <Paragraph>{item.description}</Paragraph>
             </Card.Content>
-            <View>
-              <Text>Comment</Text>
-            </View>
-            <Card.Content>
-              <Paragraph>{item.description}</Paragraph>
-            </Card.Content>
+          </Card>
+          <BlankSpacer height={2}/>
+          <Card>
+            <Card.Title title={"Comment"} titleVariant="labelLarge"/>
+            <TextInput
+              label="Comment..."
+              value={text}
+              onChangeText={text => setText(text)}
+            />
           </Card>
       </ScrollView>
   )
@@ -113,6 +142,14 @@ function BubbleImageScreen({ route, navigation }) {
   )
 }
 
+function BubbleUsersScreen({route, navigation }) {
+  return (
+    <ScrollView>
+
+    </ScrollView>
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
       flex: 1,
@@ -121,6 +158,7 @@ const styles = StyleSheet.create({
       marginTop: 0,
       flex: 1,
       width: '100%',
+      borderWidth: 0
   },
   redBorder: {
       borderColor: "red",
