@@ -28,7 +28,7 @@ const defaultUsers = [ //格式参考
     },
 ];
 
-const CustomUser = ({users}) => {
+const CustomUserDetail = ({users}) => {
   const renderUser = ({item}) => {
     return (
         <Pressable style={styles.row}>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginRight: 10,
-    borderRadius:'25px',
+    borderRadius:25,
   },
   row: {
     flexDirection: 'row',
@@ -96,4 +96,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default CustomUser
+export default CustomUserDetail

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import CustomChatUser from '../../components/CustomChatUser';
 import CustomUserDetail from '../../components/CustomUserDetail';
+import CustomChat from '../../components/CustomChat';
 const defaultUsers = [
   {
     id: 1, 
@@ -41,9 +42,13 @@ function MapScreen() {
     //   <Text>Map Screen</Text>
     // </View>
     <View>
-      <CustomUserDetail
+      {/* <CustomUserDetail
         users={defaultUsers}
-      />
+      /> */}
+      {/* <CustomChatUser
+        userDetail= {defaultUsers}
+      /> */}
+      <CustomChat/>
     </View>
   );
 };

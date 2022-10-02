@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 // import Chat from './Chat';
 // import Users from './Users';
-import CustomChat from '../../components/CustomChat';
-import CustomUser from '../../components/CustomUser';
+import CustomChat from '../CustomChat';
+import CustomUser from '../CustomUser';
 const defaultUsers = [
   {
     id: 1, 
@@ -34,6 +34,7 @@ const CustomChatUser = ({userDetail}) =>  {
   const [currentPage, setCurrentPage] = useState('users');
   // const [username, setUsername] = useState(null);
   const [users, setUsers] = useState(userDetail);
+//   const [userToAdd, setUserToAdd] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const onClickUser = (user) => {

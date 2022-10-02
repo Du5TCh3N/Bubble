@@ -13,7 +13,7 @@ import {
   PostTime,
   MessageText,
   TextSection,
-} from '../styles/UserStyles';
+} from '../../../styles/UserStyles';
 
 const CustomUser = ({users,onClickUser,}) => {
   const renderUser = ({item}) => {
