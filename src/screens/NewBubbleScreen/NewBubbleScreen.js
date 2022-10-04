@@ -74,7 +74,7 @@ function NewBubbleScreen(){
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
     { label: 'Female', value: 'female', checked: false },
-    { label: 'Anything', value: 'anything', checked: false },
+    { label: 'Prefer not to say', value: 'anything', checked: false },
   ]);
   const example_data = [{key:'1',value:'Group Chat'},{key:'2',value:'Offline event'}];
   const example_tags = [{key:'1',value:'Sports'},{key:'2',value:'Single'},
