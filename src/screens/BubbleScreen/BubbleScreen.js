@@ -8,14 +8,14 @@ import { Card, Title, Paragraph, IconButton} from 'react-native-paper';
 import SearchBar from "../../components/SearchBar";
 
 const dummyBubbles = [
-  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-02"},
-  {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-01"},
-  {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-09-30"},
-  {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-09-30"},
-  {key: '5', name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-29"},
-  {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-28"},
-  {key: '7', name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-27"},
-  {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "play", date: "2022-09-27"},
+  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02"},
+  {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01"},
+  {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30"},
+  {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30"},
+  {key: '5', name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29"},
+  {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28"},
+  {key: '7', name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27"},
+  {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27"},
 ]
 
 const BubbleStack = createStackNavigator();
@@ -64,7 +64,11 @@ function BubbleHomeScreen({ navigation }) {
                     <Card.Title title= {item.name} subtitle= {item.code}/>
                     <Card.Content>
                         <Paragraph>{item.description}</Paragraph>
-                        <Paragraph style = {styles.tagItems}>{item.tag1}</Paragraph>
+                        {/* <Paragraph style = {styles.tagItems}>{item.tag1}</Paragraph> */}
+                        <View flexDirection="row">
+                          {item.tags.map((tag) => (<Paragraph style={styles.tagItems} key={tag}>{tag}</Paragraph>))}
+                        </View>
+                        
                         <Text>{item.space}</Text>
                     </Card.Content>
                 </Card>
@@ -141,10 +145,10 @@ const styles = StyleSheet.create({
   },
 
   tagItems: {
-    backgroundColor: '#F0EDED',
-    color: '#949292',
+    backgroundColor: '#A8A5A5',
+    color: '#F0EDED',
     fontSize: 12,
-    display: 'inline-block',
+    display: 'flex',
     paddingHorizontal: 7,
     paddingVertical: 1,
     borderRadius: 11,
