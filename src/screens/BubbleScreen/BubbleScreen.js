@@ -3,19 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Ima
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import { FlatGrid } from 'react-native-super-grid';
-import { Card, Title, Paragraph, IconButton} from 'react-native-paper';
+import { Card, Title, Paragraph, IconButton, Badge, TextInput} from 'react-native-paper';
+import BlankSpacer from "react-native-blank-spacer";
 
 import SearchBar from "../../components/SearchBar";
 
 const dummyBubbles = [
-  {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02"},
-  {key: '2', name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01"},
-  {key: '3', name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30"},
-  {key: '4', name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30"},
-  {key: '5', name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29"},
-  {key: '6', name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28"},
-  {key: '7', name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27"},
-  {key: '8', name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27"},
+  {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 1, name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 2, name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 3, name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 4, name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 5, name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
 ]
 
 const BubbleStack = createStackNavigator();
@@ -26,6 +27,7 @@ function BubbleScreen() {
       <BubbleStack.Screen name="Home" component={BubbleHomeScreen}/>
       <BubbleStack.Screen name="Detail" component={BubbleDetailScreen}/>
       <BubbleStack.Screen name="Image" component={BubbleImageScreen}/>
+      <BubbleStack.Screen name="Users" component={BubbleUsersScreen}/>
     </BubbleStack.Navigator>
   );
 };
@@ -82,13 +84,28 @@ function BubbleHomeScreen({ navigation }) {
 function BubbleDetailScreen({ route, navigation }) {
   const { item } = route.params;
 
+  const [text, setText] = React.useState("");
+
   return (
       <ScrollView>
           <Card>
-              <Card.Title title={item.name} />
+              <TouchableOpacity onPress={() => navigation.navigate("Users", {item})}>
+                <Card.Title 
+                  title={item.creator_name} 
+                  subtitle={item.creator_location}
+                  titleVariant="titleMedium"
+                  subtitleVariant="bodySmall"
+                  right={(props) => <View><Text>Number of Users</Text><Badge>{item.num_Members}</Badge>
+                    </View>}
+                />
+              </TouchableOpacity>
+
               <TouchableOpacity onPress={() => navigation.navigate('Image', { item })}>
                   <Card.Cover source = {{ uri: item.img }}/>
               </TouchableOpacity>
+
+              <Card.Title title={item.name} />
+
               <Card.Actions alignItems="flex-end">
                   <IconButton icon= "thumb-up-outline" onPress={() => console.log('Liked')}/>
                   <IconButton icon= "share-outline" onPress={() => console.log('Shared')}/>
@@ -97,13 +114,22 @@ function BubbleDetailScreen({ route, navigation }) {
             </Card.Actions>
             <Card.Content>
               <Paragraph>{item.description}</Paragraph>
+              <BlankSpacer height={2}/>
+              <View flexDirection="row">
+                {item.tags.map((tag) => (<Paragraph style={styles.tagItems} key={tag}>{tag}</Paragraph>))}
+              </View>
             </Card.Content>
-            <View>
-              <Text>Comment</Text>
-            </View>
-            <Card.Content>
-              <Paragraph>{item.description}</Paragraph>
-            </Card.Content>
+          </Card>
+
+          <BlankSpacer height={2}/>
+
+          <Card>
+            <Card.Title title={"Comment"} titleVariant="labelLarge"/>
+            <TextInput
+              label="Comment..."
+              value={text}
+              onChangeText={text => setText(text)}
+            />
           </Card>
       </ScrollView>
   )
@@ -127,6 +153,18 @@ function BubbleImageScreen({ route, navigation }) {
       />
       <Text>Image</Text>
     </View>
+  )
+}
+
+function BubbleUsersScreen({route, navigation }) {
+  const { item } = route.params;
+
+  return (
+    <ScrollView>
+      <View flexDirection="row">
+        {item.members.map((member) => (<Paragraph style={styles.tagItems} key={member}>{member}</Paragraph>))}
+      </View>
+    </ScrollView>
   )
 }
 
