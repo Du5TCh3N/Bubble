@@ -9,14 +9,14 @@ import BlankSpacer from "react-native-blank-spacer";
 import SearchBar from "../../components/SearchBar";
 
 const dummyBubbles = [
-  {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 1, name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 2, name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 3, name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 4, name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 5, name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
-  {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"], num_Members: 0},
+  {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"]},
+  {key: 1, name: 'Come Drink 1', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  {key: 2, name: 'Come Drink 2', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  {key: 3, name: 'Come Drink 3', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  {key: 4, name: 'Come Drink 4', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  {key: 5, name: 'Come Drink 5', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
 ]
 
 const BubbleStack = createStackNavigator();
@@ -95,7 +95,7 @@ function BubbleDetailScreen({ route, navigation }) {
                   subtitle={item.creator_location}
                   titleVariant="titleMedium"
                   subtitleVariant="bodySmall"
-                  right={(props) => <View><Text>Number of Users</Text><Badge>{item.num_Members}</Badge>
+                  right={(props) => <View><Text>Number of Users</Text><Badge>{item.members.length}</Badge>
                     </View>}
                 />
               </TouchableOpacity>
@@ -161,8 +161,8 @@ function BubbleUsersScreen({route, navigation }) {
 
   return (
     <ScrollView>
-      <View flexDirection="row">
-        {item.members.map((member) => (<Paragraph style={styles.tagItems} key={member}>{member}</Paragraph>))}
+      <View flexDirection="column">
+        {item.members.map((member) => (<Paragraph key={member}>{member}</Paragraph>))}
       </View>
     </ScrollView>
   )
