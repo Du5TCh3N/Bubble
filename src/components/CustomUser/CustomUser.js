@@ -1,21 +1,8 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {FlatList,Image,Pressable,StyleSheet,Text,} from 'react-native';
+import {UserInfoText,UserName,PostTime,MessageText,TextSection,} from '../../../styles/UserStyles';
 
-import {
-  UserInfoText,
-  UserName,
-  PostTime,
-  MessageText,
-  TextSection,
-} from '../styles/UserStyles';
-
-export default function Users({
+function CustomUser({
   users,
   onClickUser,
 }) {
@@ -85,3 +72,5 @@ const styles = StyleSheet.create({
   }
 
 });
+
+export default CustomUser;
