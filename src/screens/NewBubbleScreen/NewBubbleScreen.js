@@ -61,6 +61,7 @@ function NewBubbleScreen(){
   ];
  
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedTags, setselectedTags] = useState([])
  
   const onSelectedItemsChange = (selectedItems) => {
  
@@ -72,6 +73,16 @@ function NewBubbleScreen(){
     }
  
   };
+  const onSelectedTagsChange = (selectedTags) => {
+ 
+    setselectedTags(selectedTags);
+ 
+    for (let i = 0; i < selectedTags.length; i++) {
+      var tempItem = example_tag.find(item => item.id === selectedTags[i]);
+      console.log(tempItem);
+    }
+ 
+  };
 
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
@@ -79,10 +90,14 @@ function NewBubbleScreen(){
     //function to handle the date change
     if (type === 'END_DATE') {
       setSelectedEndDate(date);
+
+
     } else {
       setSelectedEndDate(null);
       setSelectedStartDate(date);
     }
+    console.log(selectedStartDate)
+    console.log(selectedEndDate)
   };
 
   return (
@@ -191,8 +206,8 @@ function NewBubbleScreen(){
           hideTags
           items={example_tag}
           uniqueKey="id"
-          onSelectedItemsChange={onSelectedItemsChange}
-          selectedItems={selectedItems}
+          onSelectedItemsChange={onSelectedTagsChange}
+          selectedItems={selectedTags}
           selectText="Select Items"
           searchInputPlaceholderText="Search Items Here..."
           onChangeInput={(text) => console.log(text)}
