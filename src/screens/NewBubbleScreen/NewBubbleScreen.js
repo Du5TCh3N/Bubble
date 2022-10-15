@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView} from "react-native";
+import { StyleSheet, Text, View, ScrollView, TextInput,Alert } from "react-native";
 import { Button } from 'react-native-paper';
 import { Input, CheckBox } from 'react-native-elements';
 import SelectList from 'react-native-dropdown-select-list';
@@ -62,6 +62,12 @@ function NewBubbleScreen(){
  
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setselectedTags] = useState([])
+
+  const [nametext, onChangeNameText] = useState("Enter bubble name");
+  const [numbertext, onChangeNumberText] = useState("Enter number of participants");
+  const [addresstext, onChangeAddressText] = useState("Enter event address");
+
+
  
   const onSelectedItemsChange = (selectedItems) => {
  
@@ -107,13 +113,12 @@ function NewBubbleScreen(){
       flexDirection: "column"
     }]}>
       <View style={{ flex: 6, padding: 5}}>
-        
-  
+
         {/* const data = [{key:'1',value:'Jammu & Kashmir'}]; */}
         <Text>Bubble name</Text>
-        <Input placeholder='Bubble name'/>
+        <Input onChangeText={onChangeNameText} value = {nametext}/>
         <Text>No. participant</Text> 
-        <Input placeholder='No. participant'/>
+        <Input onChangeText={onChangeNumberText} value = {numbertext}/>
         <Text>Date</Text> 
         {/* <Input placeholder='No. participant'/> */}
         <View >
@@ -160,8 +165,8 @@ function NewBubbleScreen(){
         />
         </View>
 
-        <Text>Location</Text> 
-        <Input placeholder='No. participant'/>
+        <Text>Address</Text> 
+        <Input onChangeText={onChangeAddressText} value = {addresstext}/>
         
         <Text>Participants</Text>
         <View style = {styles.checkbox}>
@@ -225,7 +230,8 @@ function NewBubbleScreen(){
  
         <View style = {{borderTopLeftRadius: 20, borderTopRightRadius: 20, 
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
-        <Button color="#FFFFFF" mode = "text" onPress={() => Alert.alert('Simple Button pressed')  }>
+        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate,
+                                                          selectedEndDate,addresstext,isChecked,selectedItems,selectedTags)  }>
           Post Bubble
         </Button>
         
