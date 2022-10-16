@@ -13,8 +13,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 
 
 
-function NewBubbleScreen(){
-
+function NewBubbleScreen({bubbles, setBubble}){
 
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
@@ -232,6 +231,12 @@ function NewBubbleScreen(){
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
         <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate,
                                                           selectedEndDate,addresstext,isChecked,selectedItems,selectedTags)  }>
+          Post Bubble
+        </Button>
+        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-02"}])  }>
+          Post Bubble
+        </Button>
+        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button>
         

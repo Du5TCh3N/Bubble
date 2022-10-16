@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,9 +17,12 @@ import MapScreen from './src/screens/MapScreen';
 import NewBubbleScreen from './src/screens/NewBubbleScreen';
 import ChatScreen from './src/screens/ChatScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import { Bubble } from 'react-native-gifted-chat';
 // import CalendarScreen from './src/screens/CalendarScreen';
 
 const Tab = createBottomTabNavigator();
+
+
 
 function Bubbles() {
   return (
@@ -33,11 +36,7 @@ function Maps() {
   );
 }
 
-function Create() {
-  return (
-    <NewBubbleScreen></NewBubbleScreen>
-  )
-}
+
 
 function Chats() {
   return <ChatScreen></ChatScreen>;
@@ -51,6 +50,14 @@ function Profile() {
 }
 
 export default function App() {
+  const [dummyBubbles, setDummyBubbles] = useState([]);
+
+  function Create() {
+    return (
+      <NewBubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></NewBubbleScreen>
+    )
+  }
+
   return (
     <NavigationContainer>
       <Tab.Navigator
