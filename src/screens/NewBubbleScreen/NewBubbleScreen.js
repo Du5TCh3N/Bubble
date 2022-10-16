@@ -1,85 +1,25 @@
 
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView, TextInput,Alert } from "react-native";
 import { Button } from 'react-native-paper';
 import { Input, CheckBox } from 'react-native-elements';
 import SelectList from 'react-native-dropdown-select-list';
 // import SelectBox from 'react-native-multi-selectbox';
 import MultiSelect from 'react-native-multiple-select';
+import CalendarPicker from 'react-native-calendar-picker';
 // import { xorBy } from 'lodash'
 
 // import { MultiSelect } from "@progress/kendo-react-dropdowns";  
 
 
 
-function NewBubbleScreen(){
-  const [selected, setSelected] = React.useState("");
-  const [selectedTeams, setSelectedTeams] = useState([])
-  const K_OPTIONS = [
-    {
-      item: 'Juventus',
-      id: 'JUVE',
-    },
-    {
-      item: 'Real Madrid',
-      id: 'RM',
-    },
-    {
-      item: 'Barcelona',
-      id: 'BR',
-    },
-    {
-      item: 'PSG',
-      id: 'PSG',
-    },
-    {
-      item: 'FC Bayern Munich',
-      id: 'FBM',
-    },
-    {
-      item: 'Manchester United FC',
-      id: 'MUN',
-    },
-    {
-      item: 'Manchester City FC',
-      id: 'MCI',
-    },
-    {
-      item: 'Everton FC',
-      id: 'EVE',
-    },
-    {
-      item: 'Tottenham Hotspur FC',
-      id: 'TOT',
-    },
-    {
-      item: 'Chelsea FC',
-      id: 'CHE',
-    },
-    {
-      item: 'Liverpool FC',
-      id: 'LIV',
-    },
-    {
-      item: 'Arsenal FC',
-      id: 'ARS',
-    },
-  
-    {
-      item: 'Leicester City FC',
-      id: 'LEI',
-    },
-  ]
+function NewBubbleScreen({bubbles, setBubble}){
 
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
     { label: 'Female', value: 'female', checked: false },
     { label: 'Anything', value: 'anything', checked: false },
   ]);
-  const example_data = [{key:'1',value:'Group Chat'},{key:'2',value:'Offline event'}];
-  const example_tags = [{key:'1',value:'Sports'},{key:'2',value:'Single'},
-                        {key:'3',value:'Elephant & Castle'},{key:'4',value:'喝酒'}];
-  
   const checkboxHandler = (value, index) => {
     const newValue = isChecked.map((checkbox, i) => {
       if (i !== index)
@@ -120,6 +60,13 @@ function NewBubbleScreen(){
   ];
  
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedTags, setselectedTags] = useState([])
+
+  const [nametext, onChangeNameText] = useState("Enter bubble name");
+  const [numbertext, onChangeNumberText] = useState("Enter number of participants");
+  const [addresstext, onChangeAddressText] = useState("Enter event address");
+
+
  
   const onSelectedItemsChange = (selectedItems) => {
  
@@ -131,26 +78,95 @@ function NewBubbleScreen(){
     }
  
   };
+  const onSelectedTagsChange = (selectedTags) => {
+ 
+    setselectedTags(selectedTags);
+ 
+    for (let i = 0; i < selectedTags.length; i++) {
+      var tempItem = example_tag.find(item => item.id === selectedTags[i]);
+      console.log(tempItem);
+    }
+ 
+  };
+
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const onDateChange = (date, type) => {
+    //function to handle the date change
+    if (type === 'END_DATE') {
+      setSelectedEndDate(date);
 
 
+    } else {
+      setSelectedEndDate(null);
+      setSelectedStartDate(date);
+    }
+    console.log(selectedStartDate)
+    console.log(selectedEndDate)
+  };
 
-  // function onMultiChange() {
-  // return (item) => setSelectedTeams(xorBy(selectedTeams, [item], 'id'))
-  // } 
   return (
+    <ScrollView style={styles.scrollView}>
     <View style={[styles.container, {
       // Try setting `flexDirection` to `"row"`.
       flexDirection: "column"
     }]}>
-      <View style={{ flex: 6,borderWidth: 2, padding: 5, margin: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20, 
-        borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>
-        
-  
+      <View style={{ flex: 6, padding: 5}}>
+
         {/* const data = [{key:'1',value:'Jammu & Kashmir'}]; */}
         <Text>Bubble name</Text>
-        <Input placeholder='Bubble name'/>
+        <Input onChangeText={onChangeNameText} value = {nametext}/>
         <Text>No. participant</Text> 
-        <Input placeholder='No. participant'/>
+        <Input onChangeText={onChangeNumberText} value = {numbertext}/>
+        <Text>Date</Text> 
+        {/* <Input placeholder='No. participant'/> */}
+        <View >
+        <CalendarPicker
+          startFromMonday={true}
+          allowRangeSelection={true}
+          minDate={new Date(2018, 1, 1)}
+          maxDate={new Date(2050, 6, 3)}
+          weekdays={
+            [
+              'Mon', 
+              'Tue', 
+              'Wed', 
+              'Thur', 
+              'Fri', 
+              'Sat', 
+              'Sun'
+            ]}
+          months={[
+            'January',
+            'Febraury',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ]}
+          previousTitle="Previous"
+          nextTitle="Next"
+          todayBackgroundColor="#e6ffe6"
+          selectedDayColor="#66ff33"
+          selectedDayTextColor="#000000"
+          scaleFactor={375}
+          textStyle={{
+            fontFamily: 'Cochin',
+            color: '#000000',
+          }}
+          onDateChange={onDateChange}
+        />
+        </View>
+
+        <Text>Address</Text> 
+        <Input onChangeText={onChangeAddressText} value = {addresstext}/>
+        
         <Text>Participants</Text>
         <View style = {styles.checkbox}>
         {isChecked.map((checkbox, i) => (
@@ -194,8 +210,8 @@ function NewBubbleScreen(){
           hideTags
           items={example_tag}
           uniqueKey="id"
-          onSelectedItemsChange={onSelectedItemsChange}
-          selectedItems={selectedItems}
+          onSelectedItemsChange={onSelectedTagsChange}
+          selectedItems={selectedTags}
           selectText="Select Items"
           searchInputPlaceholderText="Search Items Here..."
           onChangeInput={(text) => console.log(text)}
@@ -213,7 +229,14 @@ function NewBubbleScreen(){
  
         <View style = {{borderTopLeftRadius: 20, borderTopRightRadius: 20, 
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
-        <Button color="#FFFFFF" mode = "text" onPress={() => Alert.alert('Simple Button pressed')  }>
+        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate,
+                                                          selectedEndDate,addresstext,isChecked,selectedItems,selectedTags)  }>
+          Post Bubble
+        </Button>
+        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-02"}])  }>
+          Post Bubble
+        </Button>
+        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button>
         
@@ -226,6 +249,7 @@ function NewBubbleScreen(){
       {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
       {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "beige"}} /> */}
     </View>
+    </ScrollView>
   );
 
 
