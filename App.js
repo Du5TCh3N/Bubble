@@ -22,40 +22,44 @@ import { Bubble } from 'react-native-gifted-chat';
 
 const Tab = createBottomTabNavigator();
 
-
-
-function Bubbles() {
-  return (
-    <BubbleScreen></BubbleScreen>
-  );
-}
-
-function Maps() {
-  return (
-    <MapScreen></MapScreen>
-  );
-}
-
-
-
-function Chats() {
-  return <ChatScreen></ChatScreen>;
-}
-
-
-function Profile() {
-  return (
-    <ProfileScreen></ProfileScreen>
-  );
-}
-
 export default function App() {
-  const [dummyBubbles, setDummyBubbles] = useState([]);
-
+  const [dummyBubbles, setDummyBubbles] = useState([
+    {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"]},
+    {key: 1, name: 'Come Drink 1', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 2, name: 'Come Drink 2', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 3, name: 'Come Drink 3', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 4, name: 'Come Drink 4', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 5, name: 'Come Drink 5', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+  ]);
+  function Bubbles() {
+    return (
+      <BubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></BubbleScreen>
+    );
+  }
+  
+  function Maps() {
+    return (
+      <MapScreen></MapScreen>
+    );
+  }
+  
   function Create() {
     return (
       <NewBubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></NewBubbleScreen>
     )
+  }
+  
+  function Chats() {
+    return <ChatScreen></ChatScreen>;
+  }
+  
+  
+  function Profile() {
+    return (
+      <ProfileScreen></ProfileScreen>
+    );
   }
 
   return (

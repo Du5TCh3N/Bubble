@@ -233,7 +233,7 @@ function NewBubbleScreen({bubbles, setBubble}){
                                                           selectedEndDate,addresstext,isChecked,selectedItems,selectedTags)  }>
           Post Bubble
         </Button>
-        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: '1', name: 'Come Drink!', img: 'https://picsum.photos/700', description: "lorem piscum", space: " ", tag1: "drink", date: "2022-10-02"}])  }>
+        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"]}])  }>
           Post Bubble
         </Button>
         <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>

@@ -27,16 +27,7 @@ const HEIGHT = Dimensions.get("window").height;
 const { width } = Dimensions.get('window');
 const height = width * 0.6
 
-function BubbleScreen() {
-  return (
-    <BubbleStack.Navigator>
-      <BubbleStack.Screen name="Home" component={BubbleHomeScreen}/>
-      <BubbleStack.Screen name="Detail" component={BubbleDetailScreen}/>
-      <BubbleStack.Screen name="Image" component={BubbleImageScreen}/>
-      <BubbleStack.Screen name="Users" component={BubbleUsersScreen}/>
-    </BubbleStack.Navigator>
-  );
-};
+function BubbleScreen({bubbles, setBubble}) {
 
 function BubbleHomeScreen({ navigation }) {
 
@@ -62,7 +53,7 @@ function BubbleHomeScreen({ navigation }) {
   return (
     <FlatGrid
         itemDimension={150}
-        data={dummyBubbles}
+        data={bubbles}
         style={styles.gridView}
         spacing={2}
         renderItem={({ item }) => (
@@ -188,6 +179,17 @@ function BubbleUsersScreen({route, navigation }) {
     </ScrollView>
   )
 }
+
+  return (
+    <BubbleStack.Navigator>
+      <BubbleStack.Screen name="Home" component={BubbleHomeScreen}/>
+      <BubbleStack.Screen name="Detail" component={BubbleDetailScreen}/>
+      <BubbleStack.Screen name="Image" component={BubbleImageScreen}/>
+      <BubbleStack.Screen name="Users" component={BubbleUsersScreen}/>
+    </BubbleStack.Navigator>
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {
