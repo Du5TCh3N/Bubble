@@ -32,6 +32,8 @@ function NewBubbleScreen({bubbles, setBubble}){
           ...checkbox,
           checked: !checkbox.checked,
         }
+        onChangedCheckboxText(checkbox.label)
+        console.log(checkboxtext)
         return item
       }
     return checkbox
@@ -40,23 +42,23 @@ function NewBubbleScreen({bubbles, setBubble}){
   }                         
 
   const example_event = [
-    { id: 1, name: 'Group Chat' },
-    { id: 2, name: 'Local Event' },
-    { id: 3, name: 'Online Event' },
+    { id: 0, name: 'Group Chat' },
+    { id: 1, name: 'Local Event' },
+    { id: 2, name: 'Online Event' },
 
   ];
 
   const example_tag = [
-    { id: 1, name: 'Sports' },
-    { id: 2, name: 'Gaming' },
-    { id: 3, name: 'Drinking' },
-    { id: 4, name: 'Party' },
-    { id: 5, name: 'Apex' },
-    { id: 6, name: 'Tennis' },
-    { id: 7, name: 'Sexy ladies' },
-    { id: 8, name: 'Gambling' },
-    { id: 9, name: 'Killing' },
-    { id: 10, name: 'Shooting' },
+    { id: 0, name: 'Sports' },
+    { id: 1, name: 'Gaming' },
+    { id: 2, name: 'Drinking' },
+    { id: 3, name: 'Party' },
+    { id: 4, name: 'Apex' },
+    { id: 5, name: 'Tennis' },
+    { id: 6, name: 'Sexy ladies' },
+    { id: 7, name: 'Gambling' },
+    { id: 8, name: 'Killing' },
+    { id: 9, name: 'Shooting' },
   ];
  
   const [selectedItems, setSelectedItems] = useState([]);
@@ -65,7 +67,7 @@ function NewBubbleScreen({bubbles, setBubble}){
   const [nametext, onChangeNameText] = useState("Enter bubble name");
   const [numbertext, onChangeNumberText] = useState("Enter number of participants");
   const [addresstext, onChangeAddressText] = useState("Enter event address");
-
+  const [checkboxtext, onChangedCheckboxText] = useState()
 
  
   const onSelectedItemsChange = (selectedItems) => {
@@ -73,7 +75,7 @@ function NewBubbleScreen({bubbles, setBubble}){
     setSelectedItems(selectedItems);
  
     for (let i = 0; i < selectedItems.length; i++) {
-      var tempItem = example_tag.find(item => item.id === selectedItems[i]);
+      var tempItem = example_event.find(item => item.id === selectedItems[i]);
       console.log(tempItem);
     }
  
@@ -229,11 +231,25 @@ function NewBubbleScreen({bubbles, setBubble}){
  
         <View style = {{borderTopLeftRadius: 20, borderTopRightRadius: 20, 
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
-        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate,
-                                                          selectedEndDate,addresstext,isChecked,selectedItems,selectedTags)  }>
+        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate._i,
+                                                          selectedEndDate._i,addresstext,checkboxtext,(selectedItems.map(x=>example_event[x].name)),selectedTags.map(x=>example_tag[x].name))  }>
           Post Bubble
         </Button>
-        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"]}])  }>
+        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, 
+                        name: nametext, 
+                        img: 'https://picsum.photos/700', 
+                        imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], 
+                        description: "lorem piscum", 
+                        space: " ", 
+                        bubble_type: selectedItems.map(x=>example_event[x].name),
+                        tags: selectedTags.map(x=>example_tag[x].name), 
+                        start_date: selectedStartDate._i,
+                        end_date: selectedEndDate._i,
+                        creator_name: "Charles Yu", 
+                        creator_location: addresstext, 
+                        members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"], 
+                        members_no: numbertext, 
+                        participant_type:checkboxtext}])  }>
           Post Bubble
         </Button>
         <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
