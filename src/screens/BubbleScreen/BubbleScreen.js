@@ -128,6 +128,10 @@ function BubbleDetailScreen({ route, navigation }) {
                 {item.tags.map((tag) => (<Paragraph style={styles.tagItems} key={tag}>{tag}</Paragraph>))}
               </View>
             </Card.Content>
+
+            <Card.Actions>
+              <IconButton icon="map-outline" onPress={() => navigation.navigate('Map')}/>
+            </Card.Actions>
           </Card>
 
           <BlankSpacer height={2}/>

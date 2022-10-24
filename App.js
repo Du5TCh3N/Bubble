@@ -34,7 +34,7 @@ export default function App() {
     {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-27", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
   ]);
   function Bubbles() {
-    return (
+    return (      
       <BubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></BubbleScreen>
     );
   }
