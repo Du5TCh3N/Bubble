@@ -14,7 +14,6 @@ const MyProfileScreen = () => {
 
     const onPressSeeAll = () => {
         console.warn("User wants to see all events");
-        navigation.navigate("Home");
     }
     const editProfile = () => {
         console.warn("User wants to edit profile.");
