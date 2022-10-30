@@ -1,18 +1,28 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { View, Text } from 'react-native'
+import React from 'react'
+import SignInScreen from './SignInScreen';
+import SignUpScreen from './SignUpScreen';
+import ConfirmScreen from './ConfirmScreen';
+import ForgotPasswordScreen from './ForgotPasswordScreen'
+import NewPasswordScreen from './NewPasswordScreen';
+import MyProfileScreen from './MyProfileScreen';
 
-function ProfileScreen() {
+import { createStackNavigator } from '@react-navigation/stack';
+
+const profileStack = createStackNavigator();
+
+const ProfileScreen = () => {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        height: 100,
-        padding: 20
-      }}
-    >
-      <Text>Profile Screen</Text>
-    </View>
-  );
-};
+    <profileStack.Navigator screenOptions={{headerShown: false}}> 
+        <profileStack.Screen name="SignIn" component={SignInScreen} />
+        <profileStack.Screen name="SignUp" component={SignUpScreen} />
+        <profileStack.Screen name="Confirm" component={ConfirmScreen} />
+        <profileStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <profileStack.Screen name="NewPassword" component={NewPasswordScreen} />
+        <profileStack.Screen name="Profile" component={MyProfileScreen} />
 
-export default ProfileScreen;
+    </profileStack.Navigator>
+  )
+}
+
+export default ProfileScreen
