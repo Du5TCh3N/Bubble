@@ -117,7 +117,7 @@ function BubbleDetailScreen({ route, navigation }) {
               <Card.Actions alignItems="flex-end">
                   <IconButton icon= "thumb-up-outline" onPress={() => console.log('Liked')}/>
                   <IconButton icon= "share-outline" onPress={() => console.log('Shared')}/>
-                  <IconButton icon= "chat-outline" onPress={() => console.log('Chat')}/>
+                  <IconButton icon= "chat-outline" onPress={() => navigation.navigate("Chat")}/>
                   <IconButton icon= "plus" onPress={() => console.log('Saved')}/>
             </Card.Actions>
             
