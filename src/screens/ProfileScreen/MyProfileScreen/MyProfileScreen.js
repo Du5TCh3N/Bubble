@@ -13,10 +13,11 @@ const MyProfileScreen = () => {
     const navigation = useNavigation();
 
     const onPressSeeAll = () => {
-        console.warn("User wants to see all events");
+        // console.warn("User wants to see all events");
+        navigation.navigate('Bubble');
     }
     const editProfile = () => {
-        console.warn("User wants to edit profile.");
+        // console.warn("User wants to edit profile.");
     }
 
 
