@@ -1,12 +1,15 @@
 
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, TextInput,Alert } from "react-native";
+import { StyleSheet, Text, View, ScrollView, TextInput,Alert, Dimensions } from "react-native";
 import { Button } from 'react-native-paper';
 import { Input, CheckBox } from 'react-native-elements';
 import SelectList from 'react-native-dropdown-select-list';
 // import SelectBox from 'react-native-multi-selectbox';
 import MultiSelect from 'react-native-multiple-select';
 import CalendarPicker from 'react-native-calendar-picker';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import Constants from "expo-constants";
+// import { ComboBox } from "@progress/kendo-react-dropdowns";
 // import { xorBy } from 'lodash'
 
 // import { MultiSelect } from "@progress/kendo-react-dropdowns";  
@@ -14,6 +17,13 @@ import CalendarPicker from 'react-native-calendar-picker';
 
 
 function NewBubbleScreen({bubbles, setBubble}){
+
+  const [ region, setRegion ] = React.useState({
+    latitude: 51.51758,
+    longitude: -0.11783, 
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  })
 
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
@@ -67,6 +77,7 @@ function NewBubbleScreen({bubbles, setBubble}){
   const [nametext, onChangeNameText] = useState("Enter bubble name");
   const [numbertext, onChangeNumberText] = useState("Enter number of participants");
   const [addresstext, onChangeAddressText] = useState("Enter event address");
+  const [descriptiontext, onChangeDescriptionText] = useState("Bubble description");
   const [checkboxtext, onChangedCheckboxText] = useState()
 
  
@@ -107,8 +118,20 @@ function NewBubbleScreen({bubbles, setBubble}){
     console.log(selectedEndDate)
   };
 
+  // const PlacesAutocomplete = ({setSelected}) =>{
+  //   const {
+  //     ready,
+  //     value,
+  //     setValue,
+  //     suggestions: {status, data},
+  //     clearSuggestions,
+  //   } = usePlacesAutocomplete();
+  // }
+
   return (
-    <ScrollView style={styles.scrollView}>
+
+    // <ScrollView style={styles.scrollView}>
+    
     <View style={[styles.container, {
       // Try setting `flexDirection` to `"row"`.
       flexDirection: "column"
@@ -166,8 +189,41 @@ function NewBubbleScreen({bubbles, setBubble}){
         />
         </View>
 
+
+        <View style={styles.searchContainer}>
         <Text>Address</Text> 
-        <Input onChangeText={onChangeAddressText} value = {addresstext}/>
+        <GooglePlacesAutocomplete
+          style={{ textInput: styles.input}}
+          placeholder='Search'
+          fetchDetails= {true}
+          GooglePlacesSearchQuery = {{
+            rankby: "distance",
+          }}
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+            setRegion({
+              latitude: details.geometry.location.lat,
+              latitude: details.geometry.location.lng,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            })
+          }}
+          query={{
+            key: 'AIzaSyDbxFPw8cVHVOhLZumDDLZF7oA9H6l5br0',
+            language: 'en',
+            components: "country:uk",
+            types: "establishment",
+            radius: 30000,
+            location: `${region.latitude}, ${region.longitude}`
+          }}
+        />
+        </View>
+        {/* <Input onChangeText={onChangeAddressText} value = {addresstext}/> */}
+        <View>
+        <Text>Description</Text> 
+        <Input onChangeText={onChangeDescriptionText} value = {descriptiontext}/>
+        </View>
         
         <Text>Participants</Text>
         <View style = {styles.checkbox}>
@@ -182,6 +238,21 @@ function NewBubbleScreen({bubbles, setBubble}){
         </View>
         ))}
         </View>
+        
+        {/* <ComboBox>
+          <ComboboxInput value = {value} 
+          onChange = {e => setValue(e.target.value)} 
+          disabled = {!ready} 
+          className = "combobox-input" 
+          placeholder = "Search an address"
+          />
+          <ComboboxPopover>
+            <ComboboxList>
+              {status === "OK" && data.map(({place_id, description})=> <ComboboxOption key = {place_id} value = {description}/>)}
+            </ComboboxList>
+          </ComboboxPopover>
+
+        </ComboBox> */}
 
         <Text>Event Type</Text>
         {/* <SelectList setSelected={setSelected} data={example_data} onSelect={() => alert(selected)} /> */}
@@ -231,10 +302,10 @@ function NewBubbleScreen({bubbles, setBubble}){
  
         <View style = {{borderTopLeftRadius: 20, borderTopRightRadius: 20, 
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
-        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate._i,
+        {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate._i,
                                                           selectedEndDate._i,addresstext,checkboxtext,(selectedItems.map(x=>example_event[x].name)),selectedTags.map(x=>example_tag[x].name))  }>
           Post Bubble
-        </Button>
+        </Button> */}
         <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, 
                         name: nametext, 
                         img: 'https://picsum.photos/700', 
@@ -252,9 +323,9 @@ function NewBubbleScreen({bubbles, setBubble}){
                         participant_type:checkboxtext}])  }>
           Post Bubble
         </Button>
-        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
+        {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
-        </Button>
+        </Button> */}
         
         </View>
 
@@ -265,7 +336,7 @@ function NewBubbleScreen({bubbles, setBubble}){
       {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
       {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "beige"}} /> */}
     </View>
-    </ScrollView>
+    // </ScrollView>
   );
 
 
@@ -278,12 +349,53 @@ const styles = StyleSheet.create({
     padding: 20,
     marginTop: 30
   },
+  searchContainer: {
+    position: "absolute",
+    width: "90%",
+    backgroundColor: "white",
+    shadowColor: "black",
+    textShadowOffset: {width: 2, height:2},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 4,
+    padding: 8,
+    borderRadius: 8,
+    top: Constants.statusBarHeight,
+  },
   checkbox: {
     // flex: 2, // the number of columns you want to devide the screen into
     // marginHorizontal: "auto",
     // height: 100,
   }
 });
-
+const styles_sub = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+  searchContainer: {
+    position: "absolute",
+    width: "90%",
+    backgroundColor: "white",
+    shadowColor: "black",
+    textShadowOffset: {width: 2, height:2},
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 4,
+    padding: 8,
+    borderRadius: 8,
+    top: Constants.statusBarHeight,
+  },
+  input: {
+    borderColor: "#888",
+    borderWidth: 1,
+  },
+});
 
 export default NewBubbleScreen;
