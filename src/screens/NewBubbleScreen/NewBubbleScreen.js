@@ -9,6 +9,9 @@ import MultiSelect from 'react-native-multiple-select';
 import CalendarPicker from 'react-native-calendar-picker';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from "expo-constants";
+
+import SelectBox from 'react-native-multi-selectbox'
+import { xorBy } from 'lodash'
 // import { ComboBox } from "@progress/kendo-react-dropdowns";
 // import { xorBy } from 'lodash'
 
@@ -16,8 +19,17 @@ import Constants from "expo-constants";
 
 
 
+
 function NewBubbleScreen({bubbles, setBubble}){
 
+
+  function onMultiChange() {
+    return (item) => setSelectedTeams(xorBy(selectedTeams, [item], 'id'))
+  }
+
+  function onChange() {
+    return (val) => setSelectedTeam(val)
+  }
   const [ region, setRegion ] = React.useState({
     latitude: 51.51758,
     longitude: -0.11783, 
@@ -130,7 +142,9 @@ function NewBubbleScreen({bubbles, setBubble}){
 
   return (
 
-    // <ScrollView style={styles.scrollView}>
+    <ScrollView style={styles.scrollView}
+                        keyboardShouldPersistTaps="always"
+                        listViewDisplayed={false}>
     
     <View style={[styles.container, {
       // Try setting `flexDirection` to `"row"`.
@@ -190,7 +204,7 @@ function NewBubbleScreen({bubbles, setBubble}){
         </View>
 
 
-        <View style={styles.searchContainer}>
+        {/* <View style={styles.searchContainer}> */}
         <Text>Address</Text> 
         <GooglePlacesAutocomplete
           style={{ textInput: styles.input}}
@@ -218,26 +232,27 @@ function NewBubbleScreen({bubbles, setBubble}){
             location: `${region.latitude}, ${region.longitude}`
           }}
         />
-        </View>
+        {/* </View> */}
         {/* <Input onChangeText={onChangeAddressText} value = {addresstext}/> */}
         <View>
+
+
         <Text>Description</Text> 
         <Input onChangeText={onChangeDescriptionText} value = {descriptiontext}/>
         </View>
         
-        <Text>Participants</Text>
-        <View style = {styles.checkbox}>
-        {isChecked.map((checkbox, i) => (
+        {/* <Text>Participants</Text> */}
+        {/* <View style = {styles.checkbox}> */}
+        {/* {isChecked.map((checkbox, i) => (
         <View   key={i}>
           {/* <Text>{checkbox.label}</Text> */}
-          <CheckBox
+          {/* <CheckBox
             title={checkbox.label}
             checked={checkbox.checked}
             onPress={(value) => checkboxHandler(value, i)}
-          />
-        </View>
-        ))}
-        </View>
+          /> */}
+        {/* </View>))} */} 
+        {/* </View> */}
         
         {/* <ComboBox>
           <ComboboxInput value = {value} 
@@ -336,7 +351,7 @@ function NewBubbleScreen({bubbles, setBubble}){
       {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
       {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "beige"}} /> */}
     </View>
-    // </ScrollView>
+    </ScrollView>
   );
 
 
