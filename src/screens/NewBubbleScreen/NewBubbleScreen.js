@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, TextInput,Alert, Dimensions } from "react-native";
+import { StyleSheet, Text, View, ScrollView, TextInput,Alert, Dimensions,  Platform, Switch } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker"
+// import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Button } from 'react-native-paper';
 import { Input, CheckBox } from 'react-native-elements';
 import SelectList from 'react-native-dropdown-select-list';
@@ -21,21 +23,90 @@ import { xorBy } from 'lodash'
 
 
 function NewBubbleScreen({bubbles, setBubble}){
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [datePickerVisible, setDatePickerVisible] = useState(false);
 
+  // const showDatePicker = () => {
+  //   setDatePickerVisible(true);
+  // };
 
-  function onMultiChange() {
-    return (item) => setSelectedTeams(xorBy(selectedTeams, [item], 'id'))
+  // const hideDatePicker = () => {
+  //   setDatePickerVisible(false);
+  // };
+
+  // const handleConfirm = (date) => {
+  //   setSelectedDate(date);
+  //   hideDatePicker();
+  // };
+  // const [datePicker, setDatePicker] = useState(false)
+  // const [date, setDate] = useState(new Date ())
+  
+  // function showDatePicker(){
+  //   setDatePicker(true)
+  // }
+
+  // function onDateSelected(event, value){
+  //   setDate(value)
+  //   setDatePicker(false)
+  // }
+
+  const [date, setDate] = useState(new Date())
+  const [mode, setMode] = useState('date')
+  const [show, setShow] = useState(false)
+  const [text, setText] = useState('Empty')
+
+  const onChange = (event,selectedDate) =>{
+    const currentDate = selectedDate || date;
+    // setShow(Platform.OS === 'ios')
+    setDate(currentDate)
+    let tempDate = new Date(currentDate)
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    setText(fDate)
+    console.log(fDate)
+    // setShow(false)
   }
 
-  function onChange() {
-    return (val) => setSelectedTeam(val)
+  const showMode = (currentMode) =>{
+    if (show === true){
+      setShow(false)
+    }
+    else{
+      setShow(true)
+    }
+    setMode(currentMode)
   }
+
   const [ region, setRegion ] = React.useState({
     latitude: 51.51758,
     longitude: -0.11783, 
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   })
+
+  // const [pickerMode, setPickerMode] = useState(null);
+  // const [inline, setInline] = useState(false);
+
+  // const showDatePicker = () => {
+  //   setPickerMode("date");
+  // };
+
+  // const showTimePicker = () => {
+  //   setPickerMode("time");
+  // };
+
+  // const showDateTimePicker = () => {
+  //   setPickerMode("datetime");
+  // };
+
+  // const hidePicker = () => {
+  //   setPickerMode(null);
+  // };
+
+  // const handleConfirm = (date) => {
+  //   // In order to prevent the double-shown popup bug on Android, picker has to be hidden first (https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550)
+  //   hidePicker();
+  //   console.warn("A date has been picked: ", date);
+  // };
 
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
@@ -158,9 +229,65 @@ function NewBubbleScreen({bubbles, setBubble}){
         <Text>No. participant</Text> 
         <Input onChangeText={onChangeNumberText} value = {numbertext}/>
         <Text>Date</Text> 
+        {/* <View
+        style={{
+          padding: 20,
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
+          {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}
+        </Text>
+        <Button onPress={showDatePicker}>Select a date</Button>
+        <DateTimePickerModal
+          date={selectedDate}
+          isVisible={datePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+      </View> */}
+        {/* <View style={style_date.root}> */}
+      {/* <Button onPress={showDateTimePicker}> Show Date Picker </Button> */}
+      {/* <Button title="Show Time Picker" onPress={showTimePicker} /> */}
+      {/* <Button title="Show DateTime Picker" onPress={showDateTimePicker} /> */}
+      {/* {Platform.OS === "ios" && (
+        <View style={style_date.inlineSwitchContainer}>
+          <Text style={style_date.inlineSwitchText}>Display inline?</Text>
+          <Switch value={inline} onValueChange={setInline} />
+        </View>
+      )} */}
+      {/* <DateTimePickerModal
+        isVisible={pickerMode !== null}
+        mode={pickerMode}
+        onConfirm={handleConfirm}
+        onCancel={hidePicker}
+        display={inline ? "inline" : undefined}
+      /> */}
+    {/* </View> */}
+        {/* <View style = {styles.container}>
+          <View style = {{margin:20}}>
+            <Button onPress={() => showMode('date')}>Date</Button>
+          </View>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value = {date}
+              mode = {mode}
+              is24Hour = {true}
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              onChange = {onChange} 
+              style = {{width:'100%', backgroundColor:"white"}}
+            />
+            )}
+        </View> */}
         {/* <Input placeholder='No. participant'/> */}
+        <Button onPress={() => showMode('date')}>Date</Button>
         <View >
-        <CalendarPicker
+        {show && <CalendarPicker
           startFromMonday={true}
           allowRangeSelection={true}
           minDate={new Date(2018, 1, 1)}
@@ -200,7 +327,7 @@ function NewBubbleScreen({bubbles, setBubble}){
             color: '#000000',
           }}
           onDateChange={onDateChange}
-        />
+        />}
         </View>
 
 
@@ -412,5 +539,20 @@ const styles_sub = StyleSheet.create({
     borderWidth: 1,
   },
 });
-
+const style_date = StyleSheet.create({
+  root: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  inlineSwitchContainer: {
+    marginTop: 28,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  inlineSwitchText: {
+    fontSize: 18,
+    marginRight: 8,
+  },
+});
 export default NewBubbleScreen;
