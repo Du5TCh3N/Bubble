@@ -465,9 +465,11 @@ function NewBubbleScreen({bubbles, setBubble}){
                         participant_type:checkboxtext}])  }>
           Post Bubble
         </Button>
+
         {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button> */}
+
         
         </View>
 

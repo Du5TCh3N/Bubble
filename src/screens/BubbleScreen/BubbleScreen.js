@@ -8,17 +8,6 @@ import BlankSpacer from "react-native-blank-spacer";
 
 import SearchBar from "../../components/SearchBar";
 
-const dummyBubbles = [
-  {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink", 'play'], date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"]},
-  {key: 1, name: 'Come Drink 1', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-10-01", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-  {key: 2, name: 'Come Drink 2', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-  {key: 3, name: 'Come Drink 3', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], date: "2022-09-30", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-  {key: 4, name: 'Come Drink 4', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-29", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-  {key: 5, name: 'Come Drink 5', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-28", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-  {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-  {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], date: "2022-09-27", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-]
-
 const BubbleStack = createStackNavigator();
 
 const WIDTH = Dimensions.get("window").width;
@@ -63,12 +52,11 @@ function BubbleHomeScreen({ navigation }) {
                     <Card.Title title= {item.name} subtitle= {item.code}/>
                     <Card.Content>
                         <Paragraph>{item.description}</Paragraph>
+                        <Paragraph>{item.start_date}</Paragraph>
                         {/* <Paragraph style = {styles.tagItems}>{item.tag1}</Paragraph> */}
                         <View flexDirection="row">
                           {item.tags.map((tag) => (<Paragraph style={styles.tagItems} key={tag}>{tag}</Paragraph>))}
                         </View>
-                        
-                        <Text>{item.space}</Text>
                     </Card.Content>
                 </Card>
             </TouchableOpacity>
@@ -116,11 +104,20 @@ function BubbleDetailScreen({ route, navigation }) {
               </View>
               
               <Card.Title title={item.name} />
+              
+              <Card.Content>
+                <View flexDirection="row">
+                  <Paragraph>{item.start_date}</Paragraph>
+                  <Paragraph> ~ </Paragraph>
+                  <Paragraph>{item.end_date}</Paragraph>
+                </View>
+              </Card.Content>
+              
 
               <Card.Actions alignItems="flex-end">
                   <IconButton icon= "thumb-up-outline" onPress={() => console.log('Liked')}/>
                   <IconButton icon= "share-outline" onPress={() => console.log('Shared')}/>
-                  <IconButton icon= "chat-outline" onPress={() => console.log('Chat')}/>
+                  <IconButton icon= "chat-outline" onPress={() => navigation.navigate("Chat")}/>
                   <IconButton icon= "plus" onPress={() => console.log('Saved')}/>
             </Card.Actions>
             
@@ -131,6 +128,10 @@ function BubbleDetailScreen({ route, navigation }) {
                 {item.tags.map((tag) => (<Paragraph style={styles.tagItems} key={tag}>{tag}</Paragraph>))}
               </View>
             </Card.Content>
+
+            <Card.Actions>
+              <IconButton icon="map-outline" onPress={() => navigation.navigate('Map')}/>
+            </Card.Actions>
           </Card>
 
           <BlankSpacer height={2}/>
