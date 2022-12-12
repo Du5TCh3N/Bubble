@@ -31,7 +31,7 @@ export default function App() {
     {key: 4, name: 'Come Drink 4', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-29", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
     {key: 5, name: 'Come Drink 5', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-28", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
     {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-27", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
-    {key: 7, name: 'Come Drink 7', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-27", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
+    {key: 7, name: "Let's play something", img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-27", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
   ]);
   function Bubbles() {
     return (      
