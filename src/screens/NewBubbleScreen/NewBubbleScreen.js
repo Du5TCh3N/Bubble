@@ -231,10 +231,7 @@ function NewBubbleScreen({bubbles, setBubble}){
  
         <View style = {{borderTopLeftRadius: 20, borderTopRightRadius: 20, 
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
-        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate._i,
-                                                          selectedEndDate._i,addresstext,checkboxtext,(selectedItems.map(x=>example_event[x].name)),selectedTags.map(x=>example_tag[x].name))  }>
-          Post Bubble
-        </Button>
+        
         <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, 
                         name: nametext, 
                         img: 'https://picsum.photos/700', 
@@ -250,9 +247,6 @@ function NewBubbleScreen({bubbles, setBubble}){
                         members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"], 
                         members_no: numbertext, 
                         participant_type:checkboxtext}])  }>
-          Post Bubble
-        </Button>
-        <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button>
         
