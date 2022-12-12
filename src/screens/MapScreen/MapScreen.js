@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions } from "react-native";
-import { Provider } from 'react-native-paper';
+import { Button, Provider, TextInput } from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from "expo-constants";
 import PropTypes from "prop-types";
@@ -17,8 +17,13 @@ function MapScreen() {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   })
+  const [radius, setRadius] = React.useState(1500)
+
   return (
     <View style={styles.container}>
+
+      
+
       <MapView 
         style={styles.map}
         provider={PROVIDER_GOOGLE} 
@@ -31,6 +36,7 @@ function MapScreen() {
         }}   
       >
         <Marker coordinate={{latitude: region.latitude, longitude: region.longitude}}/>
+
         <Marker 
           coordinate = {pin}
           draggable = {true}
@@ -48,13 +54,22 @@ function MapScreen() {
               <Text>I'm here!</Text>
             </Callout>
         </Marker>
+
         <Circle 
           center={pin}
-          radius = {1500}
+          radius = {radius}
         />
       </MapView>
 
       <View style={styles.searchContainer}>
+        <TextInput
+          placeholder='Enter radius of the area'
+          onChangeText={input => setRadius(input)}
+        >
+        </TextInput>
+      </View>
+
+      {/* <View style={styles.searchContainer}>
         <Text>From</Text>
         <GooglePlacesAutocomplete
           style={{ textInput: styles.input}}
@@ -109,7 +124,7 @@ function MapScreen() {
             location: `${region.latitude}, ${region.longitude}`
           }}
         />
-      </View>
+      </View> */}
     </View>
   );
 };
