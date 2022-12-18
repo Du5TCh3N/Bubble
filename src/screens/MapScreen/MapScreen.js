@@ -5,8 +5,16 @@ import { Button, Provider, TextInput } from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from "expo-constants";
 import PropTypes from "prop-types";
+import { useNavigation } from '@react-navigation/native';
 
 function MapScreen() {
+
+  const navigation = useNavigation();
+  const onPressSeeAll = () => {
+    // console.warn("User wants to see all events");
+    navigation.navigate('Bubble');
+  }
+
   const [ pin, setPin ] = React.useState({
     latitude: 51.51758,
     longitude: -0.11783, 
@@ -39,7 +47,7 @@ function MapScreen() {
 
         <Marker 
           coordinate = {pin}
-          draggable = {true}
+          draggable
           onDragStart = {(e) => {
             console.log("Drag start", e.nativeEvent.coordinate)
           }}
@@ -50,9 +58,10 @@ function MapScreen() {
             })
           }}
         >
-            <Callout>
-              <Text>I'm here!</Text>
-            </Callout>
+            <Callout onPress={onPressSeeAll}>
+              <Text>Press me to check details</Text>
+              </Callout>
+
         </Marker>
 
         <Circle 
