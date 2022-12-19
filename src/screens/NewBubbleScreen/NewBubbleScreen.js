@@ -1,70 +1,24 @@
 
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, TextInput,Alert, Dimensions,  Platform, Switch } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker"
-// import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { StyleSheet, Text, View, ScrollView,  Dimensions} from "react-native";
+
 import { Button } from 'react-native-paper';
-import { Input, CheckBox } from 'react-native-elements';
-import SelectList from 'react-native-dropdown-select-list';
-// import SelectBox from 'react-native-multi-selectbox';
+import { Input } from 'react-native-elements';
+
 import MultiSelect from 'react-native-multiple-select';
 import CalendarPicker from 'react-native-calendar-picker';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Constants from "expo-constants";
 
-import SelectBox from 'react-native-multi-selectbox'
-import { xorBy } from 'lodash'
-// import { ComboBox } from "@progress/kendo-react-dropdowns";
-// import { xorBy } from 'lodash'
-
-// import { MultiSelect } from "@progress/kendo-react-dropdowns";  
-
 
 
 
 function NewBubbleScreen({bubbles, setBubble}){
-  // const [selectedDate, setSelectedDate] = useState(new Date());
-  // const [datePickerVisible, setDatePickerVisible] = useState(false);
 
-  // const showDatePicker = () => {
-  //   setDatePickerVisible(true);
-  // };
-
-  // const hideDatePicker = () => {
-  //   setDatePickerVisible(false);
-  // };
-
-  // const handleConfirm = (date) => {
-  //   setSelectedDate(date);
-  //   hideDatePicker();
-  // };
-  // const [datePicker, setDatePicker] = useState(false)
-  // const [date, setDate] = useState(new Date ())
-  
-  // function showDatePicker(){
-  //   setDatePicker(true)
-  // }
-
-  // function onDateSelected(event, value){
-  //   setDate(value)
-  //   setDatePicker(false)
-  // }
-
-  const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
   const [show, setShow] = useState(false)
-  const [text, setText] = useState('Empty')
 
-  const onChange = (event,selectedDate) =>{
-    const currentDate = selectedDate || date;
-    // setShow(Platform.OS === 'ios')
-    setDate(currentDate)
-    let tempDate = new Date(currentDate)
-    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
-    setText(fDate)
-    console.log(fDate)
-    // setShow(false)
-  }
+
 
   const showMode = (currentMode) =>{
     if (show === true){
@@ -83,30 +37,6 @@ function NewBubbleScreen({bubbles, setBubble}){
     longitudeDelta: 0.0421,
   })
 
-  // const [pickerMode, setPickerMode] = useState(null);
-  // const [inline, setInline] = useState(false);
-
-  // const showDatePicker = () => {
-  //   setPickerMode("date");
-  // };
-
-  // const showTimePicker = () => {
-  //   setPickerMode("time");
-  // };
-
-  // const showDateTimePicker = () => {
-  //   setPickerMode("datetime");
-  // };
-
-  // const hidePicker = () => {
-  //   setPickerMode(null);
-  // };
-
-  // const handleConfirm = (date) => {
-  //   // In order to prevent the double-shown popup bug on Android, picker has to be hidden first (https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550)
-  //   hidePicker();
-  //   console.warn("A date has been picked: ", date);
-  // };
 
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
@@ -157,10 +87,10 @@ function NewBubbleScreen({bubbles, setBubble}){
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setselectedTags] = useState([])
 
-  const [nametext, onChangeNameText] = useState("Enter bubble name");
-  const [numbertext, onChangeNumberText] = useState("Enter number of participants");
+  const [nametext, onChangeNameText] = useState("");
+  const [numbertext, onChangeNumberText] = useState(0);
   const [addresstext, onChangeAddressText] = useState("Enter event address");
-  const [descriptiontext, onChangeDescriptionText] = useState("Bubble description");
+  const [descriptiontext, onChangeDescriptionText] = useState("");
   const [checkboxtext, onChangedCheckboxText] = useState()
 
  
@@ -201,16 +131,6 @@ function NewBubbleScreen({bubbles, setBubble}){
     console.log(selectedEndDate)
   };
 
-  // const PlacesAutocomplete = ({setSelected}) =>{
-  //   const {
-  //     ready,
-  //     value,
-  //     setValue,
-  //     suggestions: {status, data},
-  //     clearSuggestions,
-  //   } = usePlacesAutocomplete();
-  // }
-
   return (
 
     <ScrollView style={styles.scrollView}
@@ -218,73 +138,15 @@ function NewBubbleScreen({bubbles, setBubble}){
                         listViewDisplayed={false}>
     
     <View style={[styles.container, {
-      // Try setting `flexDirection` to `"row"`.
       flexDirection: "column"
     }]}>
       <View style={{ flex: 6, padding: 5}}>
 
-        {/* const data = [{key:'1',value:'Jammu & Kashmir'}]; */}
         <Text>Bubble name</Text>
-        <Input onChangeText={onChangeNameText} value = {nametext}/>
+        <Input onChangeText={onChangeNameText} value = {nametext} placeholder = {"Enter Bubble's name"}/>
         <Text>No. participant</Text> 
-        <Input onChangeText={onChangeNumberText} value = {numbertext}/>
+        <Input onChangeText={onChangeNumberText} value = {numbertext} placeholder = {"No of participants"}/>
         <Text>Date</Text> 
-        {/* <View
-        style={{
-          padding: 20,
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
-          {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}
-        </Text>
-        <Button onPress={showDatePicker}>Select a date</Button>
-        <DateTimePickerModal
-          date={selectedDate}
-          isVisible={datePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-        />
-      </View> */}
-        {/* <View style={style_date.root}> */}
-      {/* <Button onPress={showDateTimePicker}> Show Date Picker </Button> */}
-      {/* <Button title="Show Time Picker" onPress={showTimePicker} /> */}
-      {/* <Button title="Show DateTime Picker" onPress={showDateTimePicker} /> */}
-      {/* {Platform.OS === "ios" && (
-        <View style={style_date.inlineSwitchContainer}>
-          <Text style={style_date.inlineSwitchText}>Display inline?</Text>
-          <Switch value={inline} onValueChange={setInline} />
-        </View>
-      )} */}
-      {/* <DateTimePickerModal
-        isVisible={pickerMode !== null}
-        mode={pickerMode}
-        onConfirm={handleConfirm}
-        onCancel={hidePicker}
-        display={inline ? "inline" : undefined}
-      /> */}
-    {/* </View> */}
-        {/* <View style = {styles.container}>
-          <View style = {{margin:20}}>
-            <Button onPress={() => showMode('date')}>Date</Button>
-          </View>
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value = {date}
-              mode = {mode}
-              is24Hour = {true}
-              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-              onChange = {onChange} 
-              style = {{width:'100%', backgroundColor:"white"}}
-            />
-            )}
-        </View> */}
-        {/* <Input placeholder='No. participant'/> */}
         <Button onPress={() => showMode('date')}>Date</Button>
         <View >
         {show && <CalendarPicker
@@ -331,7 +193,6 @@ function NewBubbleScreen({bubbles, setBubble}){
         </View>
 
 
-        {/* <View style={styles.searchContainer}> */}
         <Text>Address</Text> 
         <GooglePlacesAutocomplete
           style={{ textInput: styles.input}}
@@ -341,7 +202,6 @@ function NewBubbleScreen({bubbles, setBubble}){
             rankby: "distance",
           }}
           onPress={(data, details = null) => {
-            // 'details' is provided when fetchDetails = true
             console.log(data, details);
             setRegion({
               latitude: details.geometry.location.lat,
@@ -359,42 +219,13 @@ function NewBubbleScreen({bubbles, setBubble}){
             location: `${region.latitude}, ${region.longitude}`
           }}
         />
-        {/* </View> */}
-        {/* <Input onChangeText={onChangeAddressText} value = {addresstext}/> */}
         <View>
 
 
         <Text>Description</Text> 
-        <Input onChangeText={onChangeDescriptionText} value = {descriptiontext}/>
+        <Input onChangeText={onChangeDescriptionText} value = {descriptiontext} placeholder = {"Bubble description"}/>
         </View>
         
-        {/* <Text>Participants</Text> */}
-        {/* <View style = {styles.checkbox}> */}
-        {/* {isChecked.map((checkbox, i) => (
-        <View   key={i}>
-          {/* <Text>{checkbox.label}</Text> */}
-          {/* <CheckBox
-            title={checkbox.label}
-            checked={checkbox.checked}
-            onPress={(value) => checkboxHandler(value, i)}
-          /> */}
-        {/* </View>))} */} 
-        {/* </View> */}
-        
-        {/* <ComboBox>
-          <ComboboxInput value = {value} 
-          onChange = {e => setValue(e.target.value)} 
-          disabled = {!ready} 
-          className = "combobox-input" 
-          placeholder = "Search an address"
-          />
-          <ComboboxPopover>
-            <ComboboxList>
-              {status === "OK" && data.map(({place_id, description})=> <ComboboxOption key = {place_id} value = {description}/>)}
-            </ComboboxList>
-          </ComboboxPopover>
-
-        </ComboBox> */}
 
         <Text>Event Type</Text>
         {/* <SelectList setSelected={setSelected} data={example_data} onSelect={() => alert(selected)} /> */}
@@ -419,7 +250,6 @@ function NewBubbleScreen({bubbles, setBubble}){
           submitButtonText="Submit"
         />
         <Text>Tag</Text>
-        {/* <SelectList setSelected={setSelected} data={example_tags} onSelect={() => alert(selected)} /> */}
         
         <MultiSelect
           hideTags
@@ -444,10 +274,7 @@ function NewBubbleScreen({bubbles, setBubble}){
  
         <View style = {{borderTopLeftRadius: 20, borderTopRightRadius: 20, 
         borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "#00008B", padding: 5, margin: 10}}>
-        {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(nametext,numbertext,selectedStartDate._i,
-                                                          selectedEndDate._i,addresstext,checkboxtext,(selectedItems.map(x=>example_event[x].name)),selectedTags.map(x=>example_tag[x].name))  }>
-          Post Bubble
-        </Button> */}
+
         <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, 
                         name: nametext, 
                         img: 'https://picsum.photos/700', 
@@ -466,19 +293,11 @@ function NewBubbleScreen({bubbles, setBubble}){
           Post Bubble
         </Button>
 
-        {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
-          Post Bubble
-        </Button> */}
-
         
         </View>
 
       </View>
 
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "beige"}} /> */}
     </View>
     </ScrollView>
   );
@@ -505,11 +324,6 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     top: Constants.statusBarHeight,
-  },
-  checkbox: {
-    // flex: 2, // the number of columns you want to devide the screen into
-    // marginHorizontal: "auto",
-    // height: 100,
   }
 });
 const styles_sub = StyleSheet.create({
