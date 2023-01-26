@@ -64,7 +64,7 @@ function MapScreen() {
       <View style={styles.searchContainer}>
         <TextInput
           placeholder='Enter radius of the area'
-          onChangeText={input => setRadius(input)}
+          onChangeText={input => setRadius(parseInt(input)||1500)}
         >
         </TextInput>
       </View>
