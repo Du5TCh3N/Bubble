@@ -448,19 +448,21 @@ function NewBubbleScreen({bubbles, setBubble}){
                                                           selectedEndDate._i,addresstext,checkboxtext,(selectedItems.map(x=>example_event[x].name)),selectedTags.map(x=>example_tag[x].name))  }>
           Post Bubble
         </Button> */}
-        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 0, 
+        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 8, 
                         name: nametext, 
                         img: 'https://picsum.photos/700', 
                         imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], 
                         description: "lorem piscum", 
                         space: " ", 
                         bubble_type: selectedItems.map(x=>example_event[x].name),
-                        tags: selectedTags.map(x=>example_tag[x].name), 
-                        start_date: selectedStartDate._i,
-                        end_date: selectedEndDate._i,
+                        tags: selectedTags.map(x=>example_tag[x].name),
+                        // start_date: selectedStartDate._i,
+                        // end_date: selectedEndDate._i,
+                        start_date: '2023-01-31',
+                        end_date: '2023-01-31',
                         creator_name: "Charles Yu", 
                         creator_location: addresstext, 
-                        members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"], 
+                        members: [], 
                         members_no: numbertext, 
                         participant_type:checkboxtext}])  }>
           Post Bubble
