@@ -1,0 +1,25 @@
+type Bubble {
+  id: ID!
+  name: String!
+  img: String!
+  imgs: [String]!
+  description: String!
+  space: String!
+  tags: [String]!
+  start_date: String!
+  end_date: String!
+  creator_name: String!
+  creator_location: String!
+  members: [String]!
+}
+
+type Query {
+  getBubble(id: ID!): Bubble
+  listBubbles: [Bubble]
+}
+
+type Mutation {
+  createBubble(name: String!, img: String!, imgs: [String]!, description: String!, space: String!, tags: [String]!, start_date: String!, end_date: String!, creator_name: String!, creator_location: String!, members: [String]!): Bubble
+  updateBubble(id: ID!, name: String, img: String, imgs: [String], description: String, space: String, tags: [String], start_date: String, end_date: String, creator_name: String, creator_location: String, members: [String]): Bubble
+  deleteBubble(id: ID!): Bubble
+}

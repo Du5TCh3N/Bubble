@@ -1,0 +1,29 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Bubble {
+  id: ID!
+  name: String!
+  img: String!
+  imgs: [String]!
+  description: String!
+  space: String!
+  tags: [String]!
+  start_date: String!
+  end_date: String!
+  creator_name: String!
+  creator_location: String!
+  members: [String]!
+}
+
+type Query {
+  getBubble(id: ID!): Bubble
+  listBubbles: [Bubble]
+}
+
+type Mutation {
+  createBubble(name: String!, img: String!, imgs: [String]!, description: String!, space: String!, tags: [String]!, start_date: String!, end_date: String!, creator_name: String!, creator_location: String!, members: [String]!): Bubble
+  updateBubble(id: ID!, name: String, img: String, imgs: [String], description: String, space: String, tags: [String], start_date: String, end_date: String, creator_name: String, creator_location: String, members: [String]): Bubble
+  deleteBubble(id: ID!): Bubble
+}
