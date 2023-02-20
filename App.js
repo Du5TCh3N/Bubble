@@ -1,3 +1,9 @@
+import { Amplify, Auth } from 'aws-amplify'
+import { withAuthenticator } from 'aws-amplify-react-native';
+import awsconfig from './src/aws-exports'
+
+Amplify.configure(awsconfig)
+
 import 'react-native-gesture-handler';
 import React, { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
@@ -22,7 +28,7 @@ import { Bubble } from 'react-native-gifted-chat';
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+function App() {
   const [dummyBubbles, setDummyBubbles] = useState([
     {key: 0, name: 'Come Drink!', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink", 'play'], start_date: "2022-10-02", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen", "Bowen Zhu", "Robert Tan"]},
     {key: 1, name: 'Come Drink 1', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["drink"], start_date: "2022-10-01", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
@@ -102,6 +108,8 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+export default withAuthenticator(App)
 
 const styles = StyleSheet.create({
   container: {
