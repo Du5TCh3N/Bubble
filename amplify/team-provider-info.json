@@ -10,6 +10,11 @@
       "StackName": "amplify-bubble-dev-165201",
       "StackId": "arn:aws:cloudformation:eu-west-2:556592508092:stack/amplify-bubble-dev-165201/e5fe7260-b13e-11ed-899d-06c9c7f6cb78",
       "AmplifyAppId": "d1342jurlp84ob"
+    },
+    "categories": {
+      "auth": {
+        "bubblea30c375d": {}
+      }
     }
   }
 }
