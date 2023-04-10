@@ -1,4 +1,6 @@
 import { Amplify, Auth } from 'aws-amplify'
+import {DataStore} from '@aws-amplify/datastore'
+import {Bubble } from './models';
 import { withAuthenticator } from 'aws-amplify-react-native';
 import awsconfig from './src/aws-exports'
 
@@ -109,7 +111,8 @@ function App() {
   );
 }
 
-export default withAuthenticator(App)
+// export default withAuthenticator(App)
+export default App
 
 const styles = StyleSheet.create({
   container: {
