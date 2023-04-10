@@ -1,12 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBubble = /* GraphQL */ `
-  mutation CreateBubble(
-    $input: CreateBubbleInput!
-    $condition: ModelBubbleConditionInput
-  ) {
-    createBubble(input: $input, condition: $condition) {
+export const onCreateBubble = /* GraphQL */ `
+  subscription OnCreateBubble($filter: ModelSubscriptionBubbleFilterInput) {
+    onCreateBubble(filter: $filter) {
       id
       name
       img
@@ -27,12 +24,9 @@ export const createBubble = /* GraphQL */ `
     }
   }
 `;
-export const updateBubble = /* GraphQL */ `
-  mutation UpdateBubble(
-    $input: UpdateBubbleInput!
-    $condition: ModelBubbleConditionInput
-  ) {
-    updateBubble(input: $input, condition: $condition) {
+export const onUpdateBubble = /* GraphQL */ `
+  subscription OnUpdateBubble($filter: ModelSubscriptionBubbleFilterInput) {
+    onUpdateBubble(filter: $filter) {
       id
       name
       img
@@ -53,12 +47,9 @@ export const updateBubble = /* GraphQL */ `
     }
   }
 `;
-export const deleteBubble = /* GraphQL */ `
-  mutation DeleteBubble(
-    $input: DeleteBubbleInput!
-    $condition: ModelBubbleConditionInput
-  ) {
-    deleteBubble(input: $input, condition: $condition) {
+export const onDeleteBubble = /* GraphQL */ `
+  subscription OnDeleteBubble($filter: ModelSubscriptionBubbleFilterInput) {
+    onDeleteBubble(filter: $filter) {
       id
       name
       img

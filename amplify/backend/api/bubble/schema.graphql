@@ -2,3 +2,17 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
+type Bubble @model {
+  id: ID!
+  name: String!
+  img: String!
+  imgs: [String]!
+  description: String!
+  space: String!
+  tags: [String]!
+  start_date: AWSDate!
+  end_date: AWSDate!
+  creator_name: String!
+  creator_location: String!
+  members: [String]!
+}
