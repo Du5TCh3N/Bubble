@@ -1,6 +1,5 @@
 node_modules
 .expo
-yarn.lock
 package-lock.json
 
 #amplify-do-not-edit-begin
