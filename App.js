@@ -1,13 +1,13 @@
 import { Amplify, Auth } from 'aws-amplify'
-import {DataStore} from '@aws-amplify/datastore'
-// import {Bubble } from './models';
+import { DataStore } from '@aws-amplify/datastore'
+import { Bubble } from './src/models';
 import { withAuthenticator } from 'aws-amplify-react-native';
 import awsconfig from './src/aws-exports'
 
 Amplify.configure(awsconfig)
 
 import 'react-native-gesture-handler';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,8 +25,11 @@ import MapScreen from './src/screens/MapScreen';
 import NewBubbleScreen from './src/screens/NewBubbleScreen';
 import ChatScreen from './src/screens/ChatScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import { Bubble } from 'react-native-gifted-chat';
+// import { Bubble } from 'react-native-gifted-chat';
 // import CalendarScreen from './src/screens/CalendarScreen';
+
+import 'core-js/features/symbol/async-iterator';
+import 'regenerator-runtime/runtime';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,30 +44,48 @@ function App() {
     {key: 6, name: 'Come Drink 6', img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-27", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
     {key: 7, name: "Let's play something", img: 'https://picsum.photos/700', imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], description: "lorem piscum", space: " ", tags: ["play"], start_date: "2022-09-27", end_date: "2022-10-02", creator_name: "Charles Yu", creator_location: "London, UK", members: ["Guangzhong Chen"]},
   ]);
-  function Bubbles() {
+
+  useEffect(() => {
+    async function fetchBubbles() {
+      try {
+        console.log('Fetching bubbles...');
+        // Fetch all bubbles from the Bubble table
+        const bubbles = await DataStore.query(Bubble);
+        console.log('Fetched bubbles:', bubbles);
+        // Update the dummyBubbles state with the fetched bubbles
+        setDummyBubbles(bubbles);
+      } catch (error) {
+        console.error('Error fetching bubbles:', error);
+      }
+    }
+  
+    fetchBubbles();
+  }, []);
+
+  function FunctionBubblesScreen() {
     return (      
       <BubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></BubbleScreen>
     );
   }
   
-  function Maps() {
+  function FunctionMapsScreen() {
     return (
       <MapScreen></MapScreen>
     );
   }
   
-  function Create() {
+  function FunctionCreateScreen() {
     return (
       <NewBubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></NewBubbleScreen>
     )
   }
   
-  function Chats() {
+  function FunctionChatsScreen() {
     return <ChatScreen></ChatScreen>;
   }
   
   
-  function Profile() {
+  function FunctionProfileScreen() {
     return (
       <ProfileScreen></ProfileScreen>
     );
@@ -101,11 +122,11 @@ function App() {
           headerShown: false
         })}
       >
-        <Tab.Screen name="Bubble" component={Bubbles} />
-        <Tab.Screen name="Map" component={Maps} />
-        <Tab.Screen name="Add" component={Create} />
-        <Tab.Screen name="Chat" component={Chats} />
-        <Tab.Screen name="My Space" component={Profile} />
+        <Tab.Screen name="Bubble" component={FunctionBubblesScreen} />
+        <Tab.Screen name="Map" component={FunctionMapsScreen} />
+        <Tab.Screen name="Add" component={FunctionCreateScreen} />
+        <Tab.Screen name="Chat" component={FunctionChatsScreen} />
+        <Tab.Screen name="My Space" component={FunctionProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

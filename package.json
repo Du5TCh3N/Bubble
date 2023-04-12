@@ -20,7 +20,7 @@
     "@react-native-community/netinfo": "9.3.7",
     "@react-native-firebase/app": "^17.4.2",
     "@react-native-firebase/database": "^17.4.2",
-    "@react-native-picker/picker": "^2.4.10",
+    "@react-native-picker/picker": "2.4.8",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/material-top-tabs": "^6.2.2",
     "@react-navigation/native": "^6.0.11",
@@ -29,6 +29,7 @@
     "amazon-cognito-identity-js": "^6.1.2",
     "aws-amplify": "^5.0.15",
     "aws-amplify-react-native": "^7.0.2",
+    "core-js": "^3.30.0",
     "expo": "^48.0.10",
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.9.1",
@@ -62,7 +63,9 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4"
   },
   "private": true
 }
