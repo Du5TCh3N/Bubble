@@ -6,6 +6,14 @@ import CustomButton from '../../../components/CustomButton';
 import SocialButtons from '../../../components/SocialButtons';
 import { useNavigation } from '@react-navigation/native';
 
+import { Button } from 'react-native';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react-native';
+
+function SignOutButton() {
+    const { signOut } = useAuthenticator();
+    return <Button title="Sign Out" onPress={signOut} />;
+  }
+
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -65,6 +73,7 @@ const SignInScreen = () => {
                 onPress={onNoAccount}
                 type='TERTIARY'
             />
+            <SignOutButton/>
 
         </View>
         </ScrollView>

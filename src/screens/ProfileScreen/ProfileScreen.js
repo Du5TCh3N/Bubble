@@ -8,8 +8,14 @@ import NewPasswordScreen from './NewPasswordScreen';
 import MyProfileScreen from './MyProfileScreen';
 
 import { createStackNavigator } from '@react-navigation/stack';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react-native';
 
 const profileStack = createStackNavigator();
+
+function SignOutButton() {
+  const { signOut } = useAuthenticator();
+  return <Button title="Sign Out" onPress={signOut} />;
+}
 
 const ProfileScreen = () => {
   return (
@@ -20,7 +26,6 @@ const ProfileScreen = () => {
         <profileStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <profileStack.Screen name="NewPassword" component={NewPasswordScreen} />
         <profileStack.Screen name="Profile" component={MyProfileScreen} />
-
     </profileStack.Navigator>
   )
 }

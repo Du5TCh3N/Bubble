@@ -1,7 +1,8 @@
 import { Amplify, Auth } from 'aws-amplify'
 import { DataStore } from '@aws-amplify/datastore'
 import { Bubble } from './src/models';
-import { withAuthenticator } from 'aws-amplify-react-native';
+// import { Authenticator, usewithAuthenticator } from 'aws-amplify-react-native';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react-native';
 import awsconfig from './src/aws-exports'
 
 Amplify.configure(awsconfig)
@@ -32,6 +33,11 @@ import 'core-js/features/symbol/async-iterator';
 import 'regenerator-runtime/runtime';
 
 const Tab = createBottomTabNavigator();
+
+function SignOutButton() {
+  const { signOut } = useAuthenticator();
+  return <Button title="Sign Out" onPress={signOut} />;
+}
 
 function App() {
   const [dummyBubbles, setDummyBubbles] = useState([
@@ -88,11 +94,20 @@ function App() {
   function FunctionProfileScreen() {
     return (
       <ProfileScreen></ProfileScreen>
+      
     );
   }
 
   return (
-    <NavigationContainer>
+    <Authenticator.Provider>
+      <Authenticator
+        components={{
+          SignIn: (props) => (
+            <Authenticator.SignIn {...props} hideSignUp />
+          ),
+        }}
+      >
+      <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -129,6 +144,9 @@ function App() {
         <Tab.Screen name="My Space" component={FunctionProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
+      </Authenticator>
+    </Authenticator.Provider>
+    
   );
 }
 
