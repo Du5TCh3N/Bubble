@@ -28,44 +28,44 @@ import { Bubble } from '../../models';
 
 async function NewBubbleScreen({bubbles, setBubble}){
 
-  async function DataStoreSave () {
-      // Fetch the latest Bubble from the DataStore to get the ID
-      const bubbles = await DataStore.query(Bubble);
-      const lastBubble = bubbles[bubbles.length - 1];
-      const lastId = lastBubble ? Number(lastBubble.id) : 0;
-      const newId = String(lastId + 1);
+  // async function DataStoreSave () {
+  //     // Fetch the latest Bubble from the DataStore to get the ID
+  //     const bubbles = await DataStore.query(Bubble);
+  //     const lastBubble = bubbles[bubbles.length - 1];
+  //     const lastId = lastBubble ? Number(lastBubble.id) : 0;
+  //     const newId = String(lastId + 1);
 
-      // Create a new Bubble object with the desired data
-      const newBubble = new Bubble({
-        id: newId,
-        createdAt: new Date().toISOString(),
-        creator_location: "New York, USA",
-        creator_name: "John Doe",
-        description: "Lorem ipsum dolor sit amet",
-        end_date: "2022-12-31",
-        img: "https://picsum.photos/800",
-        imgs: [
-          "https://picsum.photos/800",
-          "https://picsum.photos/800"
-        ],
-        members: [
-          "Alice Smith",
-          "Bob Johnson"
-        ],
-        name: "New Bubble",
-        space: " ",
-        start_date: "2022-12-01",
-        tags: [
-          "food",
-          "music"
-        ],
-        updatedAt: new Date().toISOString(),
-        _version: 1
-      });
+  //     // Create a new Bubble object with the desired data
+  //     const newBubble = new Bubble({
+  //       id: newId,
+  //       createdAt: new Date().toISOString(),
+  //       creator_location: "New York, USA",
+  //       creator_name: "John Doe",
+  //       description: "Lorem ipsum dolor sit amet",
+  //       end_date: "2022-12-31",
+  //       img: "https://picsum.photos/800",
+  //       imgs: [
+  //         "https://picsum.photos/800",
+  //         "https://picsum.photos/800"
+  //       ],
+  //       members: [
+  //         "Alice Smith",
+  //         "Bob Johnson"
+  //       ],
+  //       name: "New Bubble",
+  //       space: " ",
+  //       start_date: "2022-12-01",
+  //       tags: [
+  //         "food",
+  //         "music"
+  //       ],
+  //       updatedAt: new Date().toISOString(),
+  //       _version: 1
+  //     });
 
-      // Save the new Bubble to the DataStore
-      await DataStore.save(newBubble);
-  }
+  //     // Save the new Bubble to the DataStore
+  //     await DataStore.save(newBubble);
+  // }
 
   const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
@@ -145,6 +145,8 @@ async function NewBubbleScreen({bubbles, setBubble}){
     { id: 8, name: 'Killing' },
     { id: 9, name: 'Shooting' },
   ];
+
+  // const example_tag = ['Sports','Gaming','Drinking','Party','Apex','Tennis','Sexy ladies','Gambling','Killing', 'Shooting'];
  
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setselectedTags] = useState([])
@@ -160,20 +162,20 @@ async function NewBubbleScreen({bubbles, setBubble}){
  
     setSelectedItems(selectedItems);
  
-    for (let i = 0; i < selectedItems.length; i++) {
-      var tempItem = example_event.find(item => item.id === selectedItems[i]);
-      console.log(tempItem);
-    }
+    // for (let i = 0; i < selectedItems.length; i++) {
+    //   var tempItem = example_event.find(item => item.id === selectedItems[i]);
+    //   console.log(tempItem);
+    // }
  
   };
   const onSelectedTagsChange = (selectedTags) => {
  
     setselectedTags(selectedTags);
  
-    for (let i = 0; i < selectedTags.length; i++) {
-      var tempItem = example_tag.find(item => item.id === selectedTags[i]);
-      console.log(tempItem);
-    }
+    // for (let i = 0; i < selectedTags.length; i++) {
+    //   var tempItem = example_tag.find(item => item.id === selectedTags[i]);
+    //   console.log(tempItem);
+    // }
  
   };
 
