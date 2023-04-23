@@ -14,6 +14,10 @@ import Constants from "expo-constants";
 
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'
+
+import { DataStore } from '@aws-amplify/datastore'
+import { Bubble } from '../../models';
+
 // import { ComboBox } from "@progress/kendo-react-dropdowns";
 // import { xorBy } from 'lodash'
 
@@ -22,33 +26,46 @@ import { xorBy } from 'lodash'
 
 
 
-function NewBubbleScreen({bubbles, setBubble}){
-  // const [selectedDate, setSelectedDate] = useState(new Date());
-  // const [datePickerVisible, setDatePickerVisible] = useState(false);
+async function NewBubbleScreen({bubbles, setBubble}){
 
-  // const showDatePicker = () => {
-  //   setDatePickerVisible(true);
-  // };
+  async function DataStoreSave () {
+      // Fetch the latest Bubble from the DataStore to get the ID
+      const bubbles = await DataStore.query(Bubble);
+      const lastBubble = bubbles[bubbles.length - 1];
+      const lastId = lastBubble ? Number(lastBubble.id) : 0;
+      const newId = String(lastId + 1);
 
-  // const hideDatePicker = () => {
-  //   setDatePickerVisible(false);
-  // };
+      // Create a new Bubble object with the desired data
+      const newBubble = new Bubble({
+        id: newId,
+        createdAt: new Date().toISOString(),
+        creator_location: "New York, USA",
+        creator_name: "John Doe",
+        description: "Lorem ipsum dolor sit amet",
+        end_date: "2022-12-31",
+        img: "https://picsum.photos/800",
+        imgs: [
+          "https://picsum.photos/800",
+          "https://picsum.photos/800"
+        ],
+        members: [
+          "Alice Smith",
+          "Bob Johnson"
+        ],
+        name: "New Bubble",
+        space: " ",
+        start_date: "2022-12-01",
+        tags: [
+          "food",
+          "music"
+        ],
+        updatedAt: new Date().toISOString(),
+        _version: 1
+      });
 
-  // const handleConfirm = (date) => {
-  //   setSelectedDate(date);
-  //   hideDatePicker();
-  // };
-  // const [datePicker, setDatePicker] = useState(false)
-  // const [date, setDate] = useState(new Date ())
-  
-  // function showDatePicker(){
-  //   setDatePicker(true)
-  // }
-
-  // function onDateSelected(event, value){
-  //   setDate(value)
-  //   setDatePicker(false)
-  // }
+      // Save the new Bubble to the DataStore
+      await DataStore.save(newBubble);
+  }
 
   const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
@@ -82,31 +99,6 @@ function NewBubbleScreen({bubbles, setBubble}){
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   })
-
-  // const [pickerMode, setPickerMode] = useState(null);
-  // const [inline, setInline] = useState(false);
-
-  // const showDatePicker = () => {
-  //   setPickerMode("date");
-  // };
-
-  // const showTimePicker = () => {
-  //   setPickerMode("time");
-  // };
-
-  // const showDateTimePicker = () => {
-  //   setPickerMode("datetime");
-  // };
-
-  // const hidePicker = () => {
-  //   setPickerMode(null);
-  // };
-
-  // const handleConfirm = (date) => {
-  //   // In order to prevent the double-shown popup bug on Android, picker has to be hidden first (https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-618776550)
-  //   hidePicker();
-  //   console.warn("A date has been picked: ", date);
-  // };
 
   const [isChecked, setChecked] = React.useState([
     { label: 'Male', value: 'male', checked: false },
@@ -201,16 +193,6 @@ function NewBubbleScreen({bubbles, setBubble}){
     console.log(selectedEndDate)
   };
 
-  // const PlacesAutocomplete = ({setSelected}) =>{
-  //   const {
-  //     ready,
-  //     value,
-  //     setValue,
-  //     suggestions: {status, data},
-  //     clearSuggestions,
-  //   } = usePlacesAutocomplete();
-  // }
-
   return (
 
     <ScrollView style={styles.scrollView}
@@ -229,62 +211,6 @@ function NewBubbleScreen({bubbles, setBubble}){
         <Text>No. participant</Text> 
         <Input onChangeText={onChangeNumberText} value = {numbertext}/>
         <Text>Date</Text> 
-        {/* <View
-        style={{
-          padding: 20,
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
-          {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}
-        </Text>
-        <Button onPress={showDatePicker}>Select a date</Button>
-        <DateTimePickerModal
-          date={selectedDate}
-          isVisible={datePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-        />
-      </View> */}
-        {/* <View style={style_date.root}> */}
-      {/* <Button onPress={showDateTimePicker}> Show Date Picker </Button> */}
-      {/* <Button title="Show Time Picker" onPress={showTimePicker} /> */}
-      {/* <Button title="Show DateTime Picker" onPress={showDateTimePicker} /> */}
-      {/* {Platform.OS === "ios" && (
-        <View style={style_date.inlineSwitchContainer}>
-          <Text style={style_date.inlineSwitchText}>Display inline?</Text>
-          <Switch value={inline} onValueChange={setInline} />
-        </View>
-      )} */}
-      {/* <DateTimePickerModal
-        isVisible={pickerMode !== null}
-        mode={pickerMode}
-        onConfirm={handleConfirm}
-        onCancel={hidePicker}
-        display={inline ? "inline" : undefined}
-      /> */}
-    {/* </View> */}
-        {/* <View style = {styles.container}>
-          <View style = {{margin:20}}>
-            <Button onPress={() => showMode('date')}>Date</Button>
-          </View>
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value = {date}
-              mode = {mode}
-              is24Hour = {true}
-              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-              onChange = {onChange} 
-              style = {{width:'100%', backgroundColor:"white"}}
-            />
-            )}
-        </View> */}
-        {/* <Input placeholder='No. participant'/> */}
         <Button onPress={() => showMode('date')}>Date</Button>
         <View >
         {show && <CalendarPicker
@@ -367,34 +293,6 @@ function NewBubbleScreen({bubbles, setBubble}){
         <Text>Description</Text> 
         <Input onChangeText={onChangeDescriptionText} value = {descriptiontext}/>
         </View>
-        
-        {/* <Text>Participants</Text> */}
-        {/* <View style = {styles.checkbox}> */}
-        {/* {isChecked.map((checkbox, i) => (
-        <View   key={i}>
-          {/* <Text>{checkbox.label}</Text> */}
-          {/* <CheckBox
-            title={checkbox.label}
-            checked={checkbox.checked}
-            onPress={(value) => checkboxHandler(value, i)}
-          /> */}
-        {/* </View>))} */} 
-        {/* </View> */}
-        
-        {/* <ComboBox>
-          <ComboboxInput value = {value} 
-          onChange = {e => setValue(e.target.value)} 
-          disabled = {!ready} 
-          className = "combobox-input" 
-          placeholder = "Search an address"
-          />
-          <ComboboxPopover>
-            <ComboboxList>
-              {status === "OK" && data.map(({place_id, description})=> <ComboboxOption key = {place_id} value = {description}/>)}
-            </ComboboxList>
-          </ComboboxPopover>
-
-        </ComboBox> */}
 
         <Text>Event Type</Text>
         {/* <SelectList setSelected={setSelected} data={example_data} onSelect={() => alert(selected)} /> */}
@@ -468,6 +366,7 @@ function NewBubbleScreen({bubbles, setBubble}){
           Post Bubble
         </Button>
 
+        <Button onPress>Amplify Test</Button>
         {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button> */}
@@ -477,10 +376,6 @@ function NewBubbleScreen({bubbles, setBubble}){
 
       </View>
 
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10}} /> */}
-      {/* <View style={{ flex: 1,borderWidth: 2, padding: 5, margin: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20,backgroundColor: "beige"}} /> */}
     </View>
     </ScrollView>
   );
