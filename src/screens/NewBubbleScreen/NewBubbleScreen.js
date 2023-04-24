@@ -24,48 +24,46 @@ import { Bubble } from '../../models';
 // import { MultiSelect } from "@progress/kendo-react-dropdowns";  
 
 
+async function DataStoreSave () {
+    // Fetch the latest Bubble from the DataStore to get the ID
+    const bubbles = await DataStore.query(Bubble);
+    const lastBubble = bubbles[bubbles.length - 1];
+    const lastId = lastBubble ? Number(lastBubble.id) : 0;
+    const newId = String(lastId + 1);
 
+    // Create a new Bubble object with the desired data
+    const newBubble = new Bubble({
+      id: newId,
+      // createdAt: new Date().toISOString(),
+      creator_location: "New York, USA",
+      creator_name: "John Doe",
+      description: "Lorem ipsum dolor sit amet",
+      end_date: "2022-12-31",
+      img: "https://picsum.photos/800",
+      imgs: [
+        "https://picsum.photos/800",
+        "https://picsum.photos/800"
+      ],
+      members: [
+        "Alice Smith",
+        "Bob Johnson"
+      ],
+      name: "New Bubble",
+      space: " ",
+      start_date: "2022-12-01",
+      tags: [
+        "food",
+        "music"
+      ],
+      // updatedAt: new Date().toISOString(),
+      _version: 1
+    });
 
-async function NewBubbleScreen({bubbles, setBubble}){
+    // Save the new Bubble to the DataStore
+    await DataStore.save(newBubble);
+}
 
-  // async function DataStoreSave () {
-  //     // Fetch the latest Bubble from the DataStore to get the ID
-  //     const bubbles = await DataStore.query(Bubble);
-  //     const lastBubble = bubbles[bubbles.length - 1];
-  //     const lastId = lastBubble ? Number(lastBubble.id) : 0;
-  //     const newId = String(lastId + 1);
-
-  //     // Create a new Bubble object with the desired data
-  //     const newBubble = new Bubble({
-  //       id: newId,
-  //       createdAt: new Date().toISOString(),
-  //       creator_location: "New York, USA",
-  //       creator_name: "John Doe",
-  //       description: "Lorem ipsum dolor sit amet",
-  //       end_date: "2022-12-31",
-  //       img: "https://picsum.photos/800",
-  //       imgs: [
-  //         "https://picsum.photos/800",
-  //         "https://picsum.photos/800"
-  //       ],
-  //       members: [
-  //         "Alice Smith",
-  //         "Bob Johnson"
-  //       ],
-  //       name: "New Bubble",
-  //       space: " ",
-  //       start_date: "2022-12-01",
-  //       tags: [
-  //         "food",
-  //         "music"
-  //       ],
-  //       updatedAt: new Date().toISOString(),
-  //       _version: 1
-  //     });
-
-  //     // Save the new Bubble to the DataStore
-  //     await DataStore.save(newBubble);
-  // }
+function NewBubbleScreen({bubbles, setBubble}){
 
   const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
@@ -368,7 +366,7 @@ async function NewBubbleScreen({bubbles, setBubble}){
           Post Bubble
         </Button>
 
-        <Button onPress>Amplify Test</Button>
+        <Button onPress={() => DataStoreSave()}>Amplify Test</Button>
         {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button> */}
@@ -381,8 +379,6 @@ async function NewBubbleScreen({bubbles, setBubble}){
     </View>
     </ScrollView>
   );
-
-
 };
 
 

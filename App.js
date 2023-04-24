@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
@@ -54,25 +54,60 @@ function App() {
   useEffect(() => {
     async function fetchBubbles() {
       try {
-        console.log('Fetching bubbles...');
+        // console.log('Fetching bubbles...');
         // Fetch all bubbles from the Bubble table
         const bubbles = await DataStore.query(Bubble);
-        console.log('Fetched bubbles:', bubbles);
+        // console.log('Fetched bubbles:', bubbles);
         // Update the dummyBubbles state with the fetched bubbles
         setDummyBubbles(bubbles);
       } catch (error) {
         console.error('Error fetching bubbles:', error);
       }
     }
-  
     fetchBubbles();
   }, []);
 
   function FunctionBubblesScreen() {
-    return (      
-      <BubbleScreen bubbles ={ dummyBubbles } setBubble={ setDummyBubbles }></BubbleScreen>
+    const [dummyBubbles, setDummyBubbles] = useState([]);
+    const [hasFetched, setHasFetched] = useState(false);
+  
+    useFocusEffect(
+      React.useCallback(() => {
+        async function fetchBubbles() {
+          try {
+            // Fetch all bubbles from the Bubble table
+            const bubbles = await DataStore.query(Bubble);
+            // Update the dummyBubbles state with the fetched bubbles
+            setDummyBubbles(bubbles);
+            setHasFetched(true);
+            console.log("fetched bubbles", bubbles);
+            console.log("");
+          } catch (error) {
+            console.error('Error fetching bubbles:', error);
+          }
+        }
+  
+        // Call fetchBubbles only when the screen is focused
+        if (hasFetched) {
+          console.log('up to date');
+        } else {
+          console.log('need to fetch bubble');
+          fetchBubbles();
+        }
+  
+        // Reset the hasFetched flag when the screen is unfocused
+        return () => {
+          setHasFetched(false);
+        };
+      }, []) // Removed the dependency array
+    );
+  
+    return (
+      <BubbleScreen bubbles={dummyBubbles} setBubble={setDummyBubbles}></BubbleScreen>
     );
   }
+  
+  
   
   function FunctionMapsScreen() {
     return (
