@@ -24,7 +24,7 @@ import { Bubble } from '../../models';
 // import { MultiSelect } from "@progress/kendo-react-dropdowns";  
 
 
-async function DataStoreSave () {
+async function DataStoreSave (data) {
     // Fetch the latest Bubble from the DataStore to get the ID
     const bubbles = await DataStore.query(Bubble);
     const lastBubble = bubbles[bubbles.length - 1];
@@ -35,9 +35,9 @@ async function DataStoreSave () {
     const newBubble = new Bubble({
       id: newId,
       // createdAt: new Date().toISOString(),
-      creator_location: "New York, USA",
-      creator_name: "John Doe",
-      description: "Lorem ipsum dolor sit amet",
+      creator_location: data.creator_location,
+      creator_name: data.bubble_name,
+      description: "data.descriptiontext",
       end_date: "2022-12-31",
       img: "https://picsum.photos/800",
       imgs: [
@@ -48,13 +48,10 @@ async function DataStoreSave () {
         "Alice Smith",
         "Bob Johnson"
       ],
-      name: "New Bubble",
+      name: data.bubble_name,
       space: " ",
       start_date: "2022-12-01",
-      tags: [
-        "food",
-        "music"
-      ],
+      tags: data.bubble_type,
       // updatedAt: new Date().toISOString(),
       _version: 1
     });
@@ -191,6 +188,7 @@ function NewBubbleScreen({bubbles, setBubble}){
     }
     console.log(selectedStartDate)
     console.log(selectedEndDate)
+
   };
 
   return (
@@ -346,7 +344,7 @@ function NewBubbleScreen({bubbles, setBubble}){
                                                           selectedEndDate._i,addresstext,checkboxtext,(selectedItems.map(x=>example_event[x].name)),selectedTags.map(x=>example_tag[x].name))  }>
           Post Bubble
         </Button> */}
-        <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 8, 
+        {/* <Button color="#FFFFFF" mode = "text" onPress={() => setBubble([...bubbles, {key: 8, 
                         name: nametext, 
                         img: 'https://picsum.photos/700', 
                         imgs: ['https://picsum.photos/700', 'https://picsum.photos/700'], 
@@ -364,9 +362,17 @@ function NewBubbleScreen({bubbles, setBubble}){
                         members_no: numbertext, 
                         participant_type:checkboxtext}])  }>
           Post Bubble
-        </Button>
+        </Button> */}
 
-        <Button onPress={() => DataStoreSave()}>Amplify Test</Button>
+        <Button onPress={() => DataStoreSave(
+          {"bubble_name":nametext,
+          bubble_type: selectedItems.map(x=>example_event[x].name),
+            creator_location: addresstext,
+            // tags: selectedTags.map(x=>example_tag[x].name),
+            // description: descriptiontext
+            })}>
+            Amplify Test</Button>
+
         {/* <Button color="#FFFFFF" mode = "text" onPress={() => console.log(bubbles)  }>
           Post Bubble
         </Button> */}
